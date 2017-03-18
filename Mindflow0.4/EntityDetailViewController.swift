@@ -18,6 +18,8 @@ class EntityDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     var entity:Entity!
     
+    var term1Pass = ""
+    
     
     @IBOutlet weak var articleTable: UITableView!
     
@@ -94,6 +96,7 @@ class EntityDetailViewController: UIViewController, UITableViewDelegate, UITable
         
         else if let destination = segue.destination as? StationaryExpandingAboveTextViewController {
             destination.entities1 = entityPass
+            destination.termOne = term1Pass
             destination.termTwo = entity.entityName
         }
     }

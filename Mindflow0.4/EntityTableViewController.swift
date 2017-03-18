@@ -201,7 +201,8 @@ class EntityTableViewController: UIViewController, UITableViewDataSource, UITabl
         if let destination = segue.destination as? EntityDetailViewController{
             if let entities = entities {
                 destination.entity = entities[(entityTable.indexPathForSelectedRow?.row)!] //weird unwrapping but okay?
-                destination
+                destination.entityPass  = entities
+                destination.term1Pass = searchTerm
             }
             
         }
@@ -213,19 +214,5 @@ class EntityTableViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    
-    
-
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
