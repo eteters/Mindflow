@@ -24,11 +24,11 @@
 		AE82C5C01E7636430078DAB9 /* SortTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82C5BF1E7636430078DAB9 /* SortTableViewCell.swift */; };
 		AE82C5C21E7636650078DAB9 /* SortTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82C5C11E7636650078DAB9 /* SortTableViewController.swift */; };
 		AEA55D111E7716A300C59376 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEA55D101E7716A300C59376 /* Main.storyboard */; };
-		AEA55D171E78492000C59376 /* UILabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA55D161E78492000C59376 /* UILabelExtensions.swift */; };
 		AEA55D1C1E78498D00C59376 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA55D1B1E78498D00C59376 /* UIColorExtensions.swift */; };
 		AEA55D1E1E7B591600C59376 /* CombinedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA55D1D1E7B591600C59376 /* CombinedEntity.swift */; };
 		AEA55D201E7B686700C59376 /* StationaryExpandingAboveTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA55D1F1E7B686700C59376 /* StationaryExpandingAboveTextViewController.swift */; };
 		AEA55D221E7B687A00C59376 /* ComparisonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA55D211E7B687A00C59376 /* ComparisonTableViewCell.swift */; };
+		AEA55D241E7CBDDC00C59376 /* UILabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA55D231E7CBDDC00C59376 /* UILabelExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,11 +51,11 @@
 		AE82C5BF1E7636430078DAB9 /* SortTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortTableViewCell.swift; sourceTree = "<group>"; };
 		AE82C5C11E7636650078DAB9 /* SortTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortTableViewController.swift; sourceTree = "<group>"; };
 		AEA55D101E7716A300C59376 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		AEA55D161E78492000C59376 /* UILabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UILabelExtensions.swift; path = ../../TwoComparisonsPrototype/TwoComparisonsPrototype/UILabelExtensions.swift; sourceTree = "<group>"; };
 		AEA55D1B1E78498D00C59376 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		AEA55D1D1E7B591600C59376 /* CombinedEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombinedEntity.swift; sourceTree = "<group>"; };
 		AEA55D1F1E7B686700C59376 /* StationaryExpandingAboveTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationaryExpandingAboveTextViewController.swift; sourceTree = "<group>"; };
 		AEA55D211E7B687A00C59376 /* ComparisonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComparisonTableViewCell.swift; sourceTree = "<group>"; };
+		AEA55D231E7CBDDC00C59376 /* UILabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +141,7 @@
 		AEA55D1A1E78496400C59376 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				AEA55D161E78492000C59376 /* UILabelExtensions.swift */,
+				AEA55D231E7CBDDC00C59376 /* UILabelExtensions.swift */,
 				AEA55D1B1E78498D00C59376 /* UIColorExtensions.swift */,
 			);
 			name = Extensions;
@@ -225,13 +225,13 @@
 				AEA55D221E7B687A00C59376 /* ComparisonTableViewCell.swift in Sources */,
 				AE59C7031E722BDC003CDE04 /* AlchemyNewsGetter.swift in Sources */,
 				AE82C5C01E7636430078DAB9 /* SortTableViewCell.swift in Sources */,
-				AEA55D171E78492000C59376 /* UILabelExtensions.swift in Sources */,
 				AE59C6FE1E722B54003CDE04 /* Entity.swift in Sources */,
 				AE82C5C21E7636650078DAB9 /* SortTableViewController.swift in Sources */,
 				AEA55D201E7B686700C59376 /* StationaryExpandingAboveTextViewController.swift in Sources */,
 				AE59C7001E722B6A003CDE04 /* Article.swift in Sources */,
 				AEA55D1C1E78498D00C59376 /* UIColorExtensions.swift in Sources */,
 				AEA55D1E1E7B591600C59376 /* CombinedEntity.swift in Sources */,
+				AEA55D241E7CBDDC00C59376 /* UILabelExtensions.swift in Sources */,
 				AE6E572A1E74BE9E00185801 /* ArticleTableViewCell.swift in Sources */,
 				AE59C7051E722D10003CDE04 /* EntityTableViewCell.swift in Sources */,
 				AE82C5BC1E74D1060078DAB9 /* WebViewController.swift in Sources */,

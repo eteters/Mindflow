@@ -58,17 +58,16 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
             else {
                 self.entities2 = entities
                 self.articles = articles
-                self.entities2 = entities?.sorted(by: { (ent1, ent2) -> Bool in
-                    return !ent1.count.isLess(than: ent2.count)// == ComparisonResult.orderedAscending
-                    
-                })
-                //if entityArray.contains(where: { $0.entityName == tempEntity.entityName }) {
+//                self.entities2 = entities?.sorted(by: { (ent1, ent2) -> Bool in
+//                    return !ent1.count.isLess(than: ent2.count)// == ComparisonResult.orderedAscending
+//                    
+//                })
                 for entityCompare in self.entities2! {
                     if let entity = self.entities1?.first(where: {$0.entityName == entityCompare.entityName}) {
                         self.combinedArray.append(CombinedEntity(name: entityCompare.entityName, entity1: entityCompare, entity2: entity))
                     }
                     else {
-                        self.combinedArray.append(CombinedEntity(name: entityCompare.entityName, entity1: entityCompare, entity2: nil))
+                        self.combinedArray.append(CombinedEntity(name: entityCompare.entityName, entity1: nil, entity2: entityCompare))
                     }
                     
                     
@@ -76,11 +75,12 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
                 }
                 
                 var uniqueElements = self.entities1?.filter({ (entity) -> Bool in
-                    !(self.entities2?.contains(where: {$0.entityName == entity.entityName}) ?? false )
+                    return !(self.entities2?.contains(where: {$0.entityName == entity.entityName}) ?? false )
                 }) ?? []
                 
+                
                 for element in uniqueElements {
-                    self.combinedArray.append(CombinedEntity(name: element.entityName, entity1: nil, entity2: element))
+                    self.combinedArray.append(CombinedEntity(name: element.entityName, entity1: element, entity2: nil))
                 }
                 
                 
