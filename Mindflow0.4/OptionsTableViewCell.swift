@@ -1,23 +1,16 @@
 //
-//  ArticleTableViewCell.swift
+//  OptionsTableViewCell.swift
 //  Mindflow0.4
 //
-//  Created by Evan Teters on 3/11/17.
+//  Created by Evan Teters on 3/19/17.
 //  Copyright © 2017 Evan Teters. All rights reserved.
 //
 
 import UIKit
 
-class ArticleTableViewCell: UITableViewCell {
+class OptionsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var articleTitleLabel: UILabel!
-    @IBOutlet weak var pubDateLabel: UILabel!
-    @IBOutlet weak var articleInfo3Label: UILabel!
-    
-    @IBOutlet weak var articleInfo4Label: UILabel!
-    
-    @IBOutlet weak var articleInfo5Label: UILabel!
-    
+    @IBOutlet weak var optionTitle: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

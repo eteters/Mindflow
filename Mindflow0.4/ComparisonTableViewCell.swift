@@ -14,6 +14,8 @@ class ComparisonTableViewCell: UITableViewCell {
     @IBOutlet fileprivate weak var termOneComparisonResultLabel: UILabel?
     @IBOutlet fileprivate weak var termTwoComparisonResultLabel: UILabel?
     
+    @IBOutlet weak var infobar1: UIProgressView!
+    @IBOutlet weak var infobar2: UIProgressView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -35,6 +37,23 @@ class ComparisonTableViewCell: UITableViewCell {
         resultLabel?.text = entity.capitalized
         termOneComparisonResultLabel?.text = String(format: "%.2f", relevance1)
         termTwoComparisonResultLabel?.text = String(format: "%.2f", relevance2)
+        
+        let rotationAngle: CGFloat
+        rotationAngle = CGFloat(M_PI)
+        
+        infobar1.transform = CGAffineTransform(rotationAngle: rotationAngle)
+        
+        infobar1.progress = Float(relevance1)
+        infobar2.progress = Float(relevance2)
+        
+//        let rotationAngle: CGFloat
+//        if facingRight {
+//            rotationAngle = CGFloat(M_PI * (3.0/2.0))
+//        } else {
+//            rotationAngle = CGFloat( (90.0 * M_PI) / 180.0 )
+//        }
+//        
+//        label.transform = CGAffineTransform(rotationAngle: rotationAngle)
     }
 
 }

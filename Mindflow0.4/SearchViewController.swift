@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import CoreGraphics
 
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var searchButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //searchButton.layer.
+//        searchButton.layer.cornerRadius = 0.5
+//        searchButton.layer.borderWidth = 0.5
         // Do any additional setup after loading the view.
     }
 

@@ -18,6 +18,7 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
     @IBOutlet weak var leftLabelView: UIView!
     @IBOutlet weak var rightLabelView: UIView!
     
+  
     var termOne: String = ""
     var termTwo: String = ""
     
@@ -118,6 +119,8 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
             (cell as? ComparisonTableViewCell)?.configure(withTitle: result.entityName, relevance1: 0, relevance2: term2.relevance)
             
         }
+        
+        
         
         
         

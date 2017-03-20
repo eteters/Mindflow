@@ -12,6 +12,7 @@ struct Article {
     var url:String
     var author:String?
     var pubDate:Date?
+    var entityRelevance:Double?
     
     init(title:String, url:String, author:String, pubDate:Date) {
         self.title = title
@@ -19,5 +20,10 @@ struct Article {
         self.url = url
         self.author = author
         self.pubDate = pubDate
+    }
+    
+    mutating func addEntityRelevance(relevance:Double) -> Bool {
+        entityRelevance = relevance
+        return true
     }
 }

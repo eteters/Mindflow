@@ -27,7 +27,7 @@ class EntityDetailViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         
         entityNameLabel.text = entity.entityName
-        countLabel.text = "Mentions: \(entity.count)"
+//        countLabel.text = "Mentions: \(entity.count)"
         articleCountLabel.text = "articleTotal: \(entity.articles.count)"
         
         articleTable.reloadData()
@@ -44,12 +44,15 @@ class EntityDetailViewController: UIViewController, UITableViewDelegate, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "articlecell", for: indexPath) as! ArticleTableViewCell
         
         cell.articleTitleLabel.text = entity.articles[indexPath.row].title
-        cell.articleURLLabel.text = ""//entity.articles[indexPath.row].url
-        
+        cell.articleInfo3Label.text = entity.articles[indexPath.row].author
+        if let relevance = entity.articles[indexPath.row].entityRelevance {
+            cell.articleInfo4Label.text = String(relevance)
+        }
+        cell.articleInfo5Label.text = ""
         
         if let date = entity.articles[indexPath.row].pubDate {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MM-dd-yyyy' 'HH:mm:ss"
+            dateFormatter.dateFormat = "'Published 'MM-dd-yyyy"
             
             
             cell.pubDateLabel.text = dateFormatter.string(from: date)

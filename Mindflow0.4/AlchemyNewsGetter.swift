@@ -11,7 +11,7 @@ import Foundation
 class AlchemyNewsGetter { //reference type I think
 
     static var searchTerm = ""
-    static var apiKey = "876b45c2688af687e85c6e76d1ad7e84524a97f2"  //  d1f33e10af1d5fd11164998f50590cf3e0f3f586 45b5c28f7ecf35b31792fc2ed970d5b6a3da3d0b
+    static var apiKey = "45b5c28f7ecf35b31792fc2ed970d5b6a3da3d0b"  //  d1f33e10af1d5fd11164998f50590cf3e0f3f586  876b45c2688af687e85c6e76d1ad7e84524a97f2
     static var baseUrlString = "https://gateway-a.watsonplatform.net/calls/data/GetNews?"
     static var start = "now-1d"
     static var end = "now"
@@ -131,12 +131,13 @@ class AlchemyNewsGetter { //reference type I think
                                 let publicationDateString = publicationNode["date"] as? String,
                                 let publicationDate = dateTimeFormatter.date(from: publicationDateString),
                                 let entities = url["entities"] as? [Any] {
-                                let tempArticle = Article(title: articleTitle, url: articleURL, author: "", pubDate: publicationDate)
+                                var tempArticle = Article(title: articleTitle, url: articleURL, author: "", pubDate: publicationDate)
                                 articleArray.append(tempArticle)
                                 for ent in entities {
                                     if let ent = ent as? [String:Any],
                                         let count = ent["count"] as? Int,
                                         let relevance = ent["relevance"] as? Double,
+                                        tempArticle.addEntityRelevance(relevance: relevance),
                                         let entName = ent["text"] as? String,
                                         let entType = ent["type"] as? String,
                                         let sentimentNode = ent["sentiment"] as? [String:Any],

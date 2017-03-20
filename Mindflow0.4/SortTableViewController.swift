@@ -10,9 +10,12 @@ import UIKit
 
 class SortTableViewController: UITableViewController {
 
-    weak var delegate: sortTableViewDelegate?
+    //weak var delegate: sortTableViewDelegate?
 
     var numSelected = 0
+    
+    weak var delegate: sortTableViewDelegate?
+
     
     @IBOutlet var sortTable: UITableView!
     //TODO: todo: add descending/ascending
