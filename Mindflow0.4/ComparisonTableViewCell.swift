@@ -38,8 +38,7 @@ class ComparisonTableViewCell: UITableViewCell {
         termOneComparisonResultLabel?.text = String(format: "%.2f", relevance1)
         termTwoComparisonResultLabel?.text = String(format: "%.2f", relevance2)
         
-        let rotationAngle: CGFloat
-        rotationAngle = CGFloat(M_PI)
+        let rotationAngle = CGFloat(M_PI)
         
         infobar1.transform = CGAffineTransform(rotationAngle: rotationAngle)
         

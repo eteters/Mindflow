@@ -31,6 +31,7 @@
 		AEA55D241E7CBDDC00C59376 /* UILabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA55D231E7CBDDC00C59376 /* UILabelExtensions.swift */; };
 		AEA55D261E7F75EB00C59376 /* OptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA55D251E7F75EB00C59376 /* OptionsTableViewController.swift */; };
 		AEA55D281E7F76A800C59376 /* OptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA55D271E7F76A800C59376 /* OptionsTableViewCell.swift */; };
+		AEA55D2A1E80B4BB00C59376 /* CompareDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA55D291E80B4BB00C59376 /* CompareDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		AEA55D231E7CBDDC00C59376 /* UILabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtensions.swift; sourceTree = "<group>"; };
 		AEA55D251E7F75EB00C59376 /* OptionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsTableViewController.swift; sourceTree = "<group>"; };
 		AEA55D271E7F76A800C59376 /* OptionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsTableViewCell.swift; sourceTree = "<group>"; };
+		AEA55D291E80B4BB00C59376 /* CompareDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompareDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,11 +137,12 @@
 			children = (
 				AE59C6F91E7228C1003CDE04 /* SearchViewController.swift */,
 				AE59C6FB1E7228F7003CDE04 /* EntityTableViewController.swift */,
-				AE82C5C11E7636650078DAB9 /* SortTableViewController.swift */,
 				AE59C7081E723CE8003CDE04 /* EntityDetailViewController.swift */,
 				AE82C5BB1E74D1060078DAB9 /* WebViewController.swift */,
 				AEA55D1F1E7B686700C59376 /* StationaryExpandingAboveTextViewController.swift */,
+				AEA55D291E80B4BB00C59376 /* CompareDetailViewController.swift */,
 				AEA55D251E7F75EB00C59376 /* OptionsTableViewController.swift */,
+				AE82C5C11E7636650078DAB9 /* SortTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				AE59C7031E722BDC003CDE04 /* AlchemyNewsGetter.swift in Sources */,
 				AE82C5C01E7636430078DAB9 /* SortTableViewCell.swift in Sources */,
 				AE59C6FE1E722B54003CDE04 /* Entity.swift in Sources */,
+				AEA55D2A1E80B4BB00C59376 /* CompareDetailViewController.swift in Sources */,
 				AE82C5C21E7636650078DAB9 /* SortTableViewController.swift in Sources */,
 				AEA55D201E7B686700C59376 /* StationaryExpandingAboveTextViewController.swift in Sources */,
 				AE59C7001E722B6A003CDE04 /* Article.swift in Sources */,

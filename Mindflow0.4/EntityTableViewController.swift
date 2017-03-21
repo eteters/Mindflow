@@ -109,7 +109,8 @@ class EntityTableViewController: UIViewController, UITableViewDataSource, UITabl
                 HeaderView.searchTitle.text = searchTerm
             }
         
-        //searchTitle.text = searchTerm
+        
+        self.title = searchTerm
         
         if (!searchDone){
             AlchemyNewsGetter.search(searchText: searchTerm, userInfo: nil, dispatchQueueForHandler: DispatchQueue.main, completionHandler: { (userInfo, entities, articles, errorString) in

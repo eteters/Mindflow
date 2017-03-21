@@ -35,6 +35,9 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = termOne + "And" + termTwo
+        
+        
         termOneLabel.text = termOne
         leftTruncationStatus = termOneLabel.isTruncating
         
@@ -145,6 +148,16 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
         leftFacingArrowImageView.image = leftLabelView.isHidden ? UIImage(named: "Left Arrow") : UIImage(named: "Right Arrow")
         
         leftLabelView.isHidden = !leftLabelView.isHidden
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? CompareDetailViewController {
+            
+            destination.combinedEntity = combinedArray[(tableView.indexPathForSelectedRow?.row)!]
+            
+            
+        }
     }
     
 }

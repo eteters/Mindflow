@@ -13,7 +13,9 @@ class EntityDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var articleCountLabel: UILabel!
 
     @IBOutlet weak var entityNameLabel: UILabel!
+    @IBOutlet weak var reSearchButton: UIButton!
     
+    @IBOutlet weak var compareButton: UIButton!
     var entityPass:[Entity]?
     
     var entity:Entity!
@@ -26,7 +28,13 @@ class EntityDetailViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        entityNameLabel.text = entity.entityName
+//        reSearchButton.currentTitle =
+//        compareButton.currentTitle = "Search " + entity.entityName + " and Compare with " + term1Pass
+        reSearchButton.setTitle("Search " + entity.entityName, for: .normal)
+        compareButton.setTitle("Search " + entity.entityName + " and Compare with " + term1Pass, for: .normal)
+        
+
+        self.title = entity.entityName
 //        countLabel.text = "Mentions: \(entity.count)"
         articleCountLabel.text = "articleTotal: \(entity.articles.count)"
         
