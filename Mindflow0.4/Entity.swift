@@ -41,6 +41,12 @@ extension Int {
     }
 }
 
+extension Double {
+    func percentage() -> Int {
+        return Int(self*100)
+    }
+}
+
 
 
 
