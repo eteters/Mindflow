@@ -35,7 +35,7 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = termOne + "And" + termTwo
+        self.title = "" //termOne + "And" + termTwo
         
         
         termOneLabel.text = termOne
@@ -102,6 +102,8 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return combinedArray.count

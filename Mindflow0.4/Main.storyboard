@@ -168,7 +168,7 @@
                     <navigationItem key="navigationItem" title="Title" id="o7D-d4-AKR">
                         <barButtonItem key="rightBarButtonItem" image="Image" id="GJ5-yV-bcT">
                             <connections>
-                                <segue destination="ZMQ-dG-MbH" kind="show" id="tTI-PD-6BO"/>
+                                <segue destination="zci-i4-pdO" kind="show" id="4iy-ve-f9u"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -180,7 +180,7 @@
             </objects>
             <point key="canvasLocation" x="1836" y="136.28185907046478"/>
         </scene>
-        <!--Options Table View Controller-->
+        <!--Title-->
         <scene sceneID="BqX-Q9-bDn">
             <objects>
                 <tableViewController id="zci-i4-pdO" customClass="OptionsTableViewController" customModule="Mindflow0_4" customModuleProvider="target" sceneMemberID="viewController">
@@ -218,6 +218,7 @@
                             <outlet property="delegate" destination="zci-i4-pdO" id="Gxm-bS-p0x"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="qaf-y8-7qY"/>
                     <connections>
                         <segue destination="ZMQ-dG-MbH" kind="show" identifier="sortsegue" id="SLt-vy-UQ8"/>
                     </connections>
@@ -226,7 +227,7 @@
             </objects>
             <point key="canvasLocation" x="1036" y="887"/>
         </scene>
-        <!--Sort Table View Controller-->
+        <!--Title-->
         <scene sceneID="G9B-2A-l75">
             <objects>
                 <tableViewController id="ZMQ-dG-MbH" customClass="SortTableViewController" customModule="Mindflow0_4" customModuleProvider="target" sceneMemberID="viewController">
@@ -265,6 +266,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="2E7-N7-dif"/>
                     <connections>
                         <outlet property="sortTable" destination="cE7-Gs-Sqd" id="5tn-5v-bQo"/>
                     </connections>
@@ -758,9 +760,8 @@
                                     <outlet property="delegate" destination="LdS-ld-H6G" id="Mwt-YO-vF5"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59j-gu-9Qs">
-                                <rect key="frame" x="16" y="125" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59j-gu-9Qs">
+                                <rect key="frame" x="16" y="125" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -769,8 +770,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="W8K-6e-Hfc" firstAttribute="leading" secondItem="e7V-hZ-rt3" secondAttribute="leading" id="2pL-c5-VQI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="59j-gu-9Qs" secondAttribute="trailing" id="3du-zK-4tk"/>
+                            <constraint firstItem="W8K-6e-Hfc" firstAttribute="top" secondItem="59j-gu-9Qs" secondAttribute="bottom" constant="8" id="OLT-hK-fuf"/>
                             <constraint firstAttribute="trailing" secondItem="W8K-6e-Hfc" secondAttribute="trailing" id="SLM-b8-oHf"/>
                             <constraint firstItem="W8K-6e-Hfc" firstAttribute="top" secondItem="TCv-ZR-Hn9" secondAttribute="bottom" constant="90" id="WyK-si-i4S"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="59j-gu-9Qs" secondAttribute="leading" id="wr2-va-1VM"/>
                             <constraint firstItem="1me-Vq-VrG" firstAttribute="top" secondItem="W8K-6e-Hfc" secondAttribute="bottom" id="yY9-Ip-TzB"/>
                         </constraints>
                     </view>
@@ -793,6 +797,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="YYC-nk-SCN"/>
         <segue reference="HQA-aK-DNj"/>
-        <segue reference="SLt-vy-UQ8"/>
     </inferredMetricsTieBreakers>
 </document>

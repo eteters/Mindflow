@@ -24,6 +24,8 @@ class SortTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Sort By..."
+        
         tableView.selectRow(at: IndexPath(row: numSelected, section: 0), animated: true, scrollPosition: .bottom)
         
         // Uncomment the following line to preserve selection between presentations

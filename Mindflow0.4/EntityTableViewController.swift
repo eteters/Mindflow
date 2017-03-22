@@ -207,11 +207,13 @@ class EntityTableViewController: UIViewController, UITableViewDataSource, UITabl
             }
             
         }
-        if let destination = segue.destination as? SortTableViewController {
-            destination.delegate = self
-            destination.numSelected = sortOption
+//        if let destination = segue.destination as? SortTableViewController {
+//            destination.delegate = self
+//            destination.numSelected = sortOption
+//        }
+        if let destination = segue.destination as? OptionsTableViewController {
+            destination.previousViewController = self 
         }
-        
         
     }
     

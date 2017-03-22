@@ -10,6 +10,9 @@ import UIKit
 
 class OptionsTableViewController: UITableViewController {
 
+    
+    var previousViewController:EntityTableViewController?
+    
     let headers = ["Sort By","View Options", "History"]
     
     var numSelected = 0
@@ -18,6 +21,9 @@ class OptionsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "Options"
+        
 
     }
 
@@ -29,7 +35,7 @@ class OptionsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,6 +67,13 @@ class OptionsTableViewController: UITableViewController {
         default:
             return //never happens
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? SortTableViewController {
+            destination.delegate = previousViewController
+        }
+        //else if let destination = segue.destination as?
     }
     
 }
