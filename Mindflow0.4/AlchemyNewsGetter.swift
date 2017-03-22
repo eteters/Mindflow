@@ -146,7 +146,7 @@ class AlchemyNewsGetter { //reference type I think
                                         let tempEntity = Entity(count: count, relevance: relevance, sentimentType: sentimentType, sentimentScore: sentimentScore, entityName: entName, entityType: entType, article: tempArticle)
                                         
                                         
-                                        if entityArray.contains(where: { $0.entityName == tempEntity.entityName }) {
+                                        if entityArray.contains(where: { $0.entityName.lowercased() == tempEntity.entityName.lowercased() }) {
                                             if let ind = entityArray.index(where: {$0.entityName == tempEntity.entityName}) {
                                                 entityArray[ind].count += tempEntity.count
                                                 entityArray[ind].articles.append(contentsOf: tempEntity.articles)

@@ -11,14 +11,13 @@ import CoreGraphics
 
 class SearchViewController: UIViewController {
 
+    @IBOutlet weak var compareSearchField: UITextField!
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var compareButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        //searchButton.layer.
-//        searchButton.layer.cornerRadius = 0.5
-//        searchButton.layer.borderWidth = 0.5
-        // Do any additional setup after loading the view.
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,22 +25,43 @@ class SearchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBOutlet weak var unHideButton: UIButton!
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func showCompare(_ sender: Any) {
+        
+        compareButton.isHidden = false
+        compareSearchField.isHidden = false
+        
+        
     }
-    */
+    
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let destination = segue.destination as? EntityTableViewController{
             destination.searchTerm = searchField.text!
         }
+        else if let destination = segue.destination as? StationaryExpandingAboveTextViewController {
+            guard let text = searchField.text else {
+                return
+            }
+            guard let text2 = compareSearchField.text else {
+                return
+            }
+            AlchemyNewsGetter.search(searchText: text, userInfo: nil, dispatchQueueForHandler: DispatchQueue.main, completionHandler: { (userInfo, entities, articles, errorString) in
+                if errorString != nil {
+                    print(errorString!)
+                    destination.entities1 = nil
+                }
+                else {
+                    destination.entities1 = entities
+                    destination.termOne = text
+                    destination.termTwo = text2
+                }
+            })
+
+        }
+        
     }
     
 }

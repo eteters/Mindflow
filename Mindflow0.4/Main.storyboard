@@ -39,21 +39,54 @@
                                     <segue destination="pJh-lk-Jxw" kind="show" id="YYC-nk-SCN"/>
                                 </connections>
                             </button>
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kcr-74-mtR">
+                                <rect key="frame" x="75" y="452" width="225" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="2xM-ie-zVO"/>
+                                    <constraint firstAttribute="width" constant="225" id="Vhb-7a-1NM"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qps-sT-k2k">
+                                <rect key="frame" x="75" y="414" width="232" height="30"/>
+                                <state key="normal" title="Or Compare It With A New Term..."/>
+                                <connections>
+                                    <action selector="showCompare:" destination="EMM-9E-SFT" eventType="touchUpInside" id="1Te-i9-jml"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qra-sT-eCh">
+                                <rect key="frame" x="135" y="485" width="104" height="30"/>
+                                <state key="normal" title="Compare Both!"/>
+                                <connections>
+                                    <segue destination="fKB-Xp-53e" kind="show" id="HQA-aK-DNj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Qra-sT-eCh" firstAttribute="leading" secondItem="Ma1-am-y82" secondAttribute="leadingMargin" constant="119" id="2yh-4K-Ou9"/>
                             <constraint firstItem="mhC-bv-l31" firstAttribute="top" secondItem="m87-ui-pSD" secondAttribute="bottom" constant="281" id="7Qe-17-cZ3"/>
+                            <constraint firstItem="qps-sT-k2k" firstAttribute="top" secondItem="m87-ui-pSD" secondAttribute="bottom" constant="28" id="9IJ-0G-JmQ"/>
+                            <constraint firstItem="Kcr-74-mtR" firstAttribute="top" secondItem="ge0-v1-6zs" secondAttribute="bottom" constant="106.5" id="NoP-pb-3T7"/>
                             <constraint firstItem="ge0-v1-6zs" firstAttribute="centerY" secondItem="Ma1-am-y82" secondAttribute="centerY" id="SoH-w7-op2"/>
+                            <constraint firstItem="Kcr-74-mtR" firstAttribute="trailing" secondItem="ge0-v1-6zs" secondAttribute="trailing" id="bgx-Up-9LR"/>
+                            <constraint firstItem="qps-sT-k2k" firstAttribute="leading" secondItem="m87-ui-pSD" secondAttribute="leading" id="h0I-zi-M6x"/>
                             <constraint firstItem="m87-ui-pSD" firstAttribute="top" secondItem="ge0-v1-6zs" secondAttribute="bottom" constant="8" symbolic="YES" id="icn-Ad-tgu"/>
                             <constraint firstItem="m87-ui-pSD" firstAttribute="centerX" secondItem="Ma1-am-y82" secondAttribute="centerX" id="jdF-n8-YRr"/>
                             <constraint firstItem="ge0-v1-6zs" firstAttribute="centerX" secondItem="Ma1-am-y82" secondAttribute="centerX" id="krH-ry-brU"/>
                             <constraint firstItem="ge0-v1-6zs" firstAttribute="centerX" secondItem="m87-ui-pSD" secondAttribute="centerX" id="pK1-6A-FAM"/>
+                            <constraint firstItem="Qra-sT-eCh" firstAttribute="top" secondItem="Kcr-74-mtR" secondAttribute="bottom" constant="8" id="uWn-Ca-zu1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Kiy-Vo-iz4"/>
                     <connections>
+                        <outlet property="compareButton" destination="Qra-sT-eCh" id="TIU-4B-vdo"/>
+                        <outlet property="compareSearchField" destination="Kcr-74-mtR" id="H0H-3b-7bB"/>
                         <outlet property="searchButton" destination="m87-ui-pSD" id="Z3V-BH-p4r"/>
                         <outlet property="searchField" destination="ge0-v1-6zs" id="jZT-54-vay"/>
+                        <outlet property="unHideButton" destination="qps-sT-k2k" id="b7c-sZ-2ft"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dRZ-u5-qVx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -611,7 +644,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OP9-dl-KmB">
                                 <rect key="frame" x="275" y="7" width="84" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="Image"/>
+                                <state key="normal" image="Image"/>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -652,7 +685,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="115" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W8K-6e-Hfc">
-                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="154" width="375" height="513"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="articlecell" rowHeight="115" id="486-Zl-A3k" customClass="ArticleTableViewCell" customModule="Mindflow0_4" customModuleProvider="target">
@@ -758,7 +791,8 @@
         <image name="Right Arrow" width="14" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Vam-EE-Yfj"/>
+        <segue reference="YYC-nk-SCN"/>
+        <segue reference="HQA-aK-DNj"/>
         <segue reference="SLt-vy-UQ8"/>
     </inferredMetricsTieBreakers>
 </document>
