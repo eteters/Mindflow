@@ -11,7 +11,11 @@ import UIKit
 class CompareDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-
+    
+    //I Need to pass the two search terms! They are heders, not the entity names
+    var search1 = ""
+    var search2 = ""
+    
     var headers = [String]()
     var combinedEntity:CombinedEntity?
     
@@ -21,11 +25,11 @@ class CompareDetailViewController: UIViewController, UITableViewDelegate, UITabl
         infoLabel.text = combinedEntity?.entityName
         self.title = combinedEntity?.entityName
         
-        if let term1 = combinedEntity?.entity1{
-            headers.append(term1.entityName)
+        if let _ = combinedEntity?.entity1{
+            headers.append(search2)
         }
-        if let term2 = combinedEntity?.entity2{
-            headers.append(term2.entityName)
+        if let _ = combinedEntity?.entity2{
+            headers.append(search1)
         }
         
         tableView.reloadData()
@@ -44,12 +48,12 @@ class CompareDetailViewController: UIViewController, UITableViewDelegate, UITabl
         return headers.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let term1 = combinedEntity?.entity1, headers[section] == term1.entityName {
+        if let term1 = combinedEntity?.entity1{
             return term1.articles.count
         }
-        if let term2 = combinedEntity?.entity2, headers[section] == term2.entityName {
+        if let term2 = combinedEntity?.entity2 {
             return term2.articles.count
-        }
+        }// TODO: check add a boolean!!!! needs to know what section
         else {return 0}
 
     }
@@ -59,7 +63,7 @@ class CompareDetailViewController: UIViewController, UITableViewDelegate, UITabl
             return cell
         }
         
-        if let term1 = combinedEntity?.entity1, headers[indexPath.section] == term1.entityName {
+        if let term1 = combinedEntity?.entity1  {
             cell.articleTitleLabel.text = term1.articles[indexPath.row].title
             cell.pubDateLabel.text = term1.articles[indexPath.row].title
             cell.articleInfo3Label.text = term1.articles[indexPath.row].author
@@ -67,7 +71,7 @@ class CompareDetailViewController: UIViewController, UITableViewDelegate, UITabl
             cell.articleInfo4Label.text = "Relevance: \(relevance?.percentage()) "
         }
     
-        if let term2 = combinedEntity?.entity2, headers[indexPath.section] == term2.entityName {
+        if let term2 = combinedEntity?.entity2  {
             cell.articleTitleLabel.text = term2.articles[indexPath.row].title
             cell.pubDateLabel.text = term2.articles[indexPath.row].title
             cell.articleInfo3Label.text = term2.articles[indexPath.row].author

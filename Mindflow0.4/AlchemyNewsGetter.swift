@@ -11,7 +11,7 @@ import Foundation
 class AlchemyNewsGetter { //reference type I think
 
     static var searchTerm = ""
-    static var apiKey = "d1f33e10af1d5fd11164998f50590cf3e0f3f586"  //  45b5c28f7ecf35b31792fc2ed970d5b6a3da3d0b  876b45c2688af687e85c6e76d1ad7e84524a97f2
+    static var apiKey = "876b45c2688af687e85c6e76d1ad7e84524a97f2"  //  45b5c28f7ecf35b31792fc2ed970d5b6a3da3d0b  HUMERA'S CODE: 876b45c2688af687e85c6e76d1ad7e84524a97f2 
     static var baseUrlString = "https://gateway-a.watsonplatform.net/calls/data/GetNews?"
     static var start = "now-1d"
     static var end = "now"

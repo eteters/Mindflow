@@ -11,23 +11,87 @@ import UIKit
 class StationaryExpandingAboveTextViewController:  UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var termOneLabel: UILabel!
-    @IBOutlet weak var termTwoLabel: UILabel!
+    @IBOutlet weak var termOneLabel: UILabel?
+    @IBOutlet weak var termTwoLabel: UILabel?
     @IBOutlet weak var rightFacingArrowImageView: UIImageView!
     @IBOutlet weak var leftFacingArrowImageView: UIImageView!
     @IBOutlet weak var leftLabelView: UIView!
     @IBOutlet weak var rightLabelView: UIView!
     
   
-    var termOne: String = ""
-    var termTwo: String = ""
+    var termOne: String = "" {
+        didSet {
+            termOneLabel?.text = termOne
+        }
+    }
+    
+    var termTwo: String = "" {
+        didSet {
+            termTwoLabel?.text = termTwo
+        }
+    }
     
     
     var leftTruncationStatus = false
     var rightTruncationStatus = false
     
     
-    var entities1:[Entity]?
+    var entities1:[Entity]? {
+        didSet {
+            leftTruncationStatus = termOneLabel?.isTruncating ?? false
+            
+            if leftTruncationStatus {
+                rightFacingArrowImageView.isHidden = false
+            }
+            
+            rightTruncationStatus = termTwoLabel?.isTruncating ?? false
+            
+            if rightTruncationStatus {
+                leftFacingArrowImageView.isHidden = false
+            }
+
+            
+            AlchemyNewsGetter.search(searchText: termTwo, userInfo: nil, dispatchQueueForHandler: DispatchQueue.main, completionHandler: { (userInfo, entities, articles, errorString) in
+                if errorString != nil {
+                    print(errorString!)
+                    self.entities2 = nil
+                    self.articles = nil
+                }
+                else {
+                    self.entities2 = entities
+                    self.articles = articles
+                    //                self.entities2 = entities?.sorted(by: { (ent1, ent2) -> Bool in
+                    //                    return !ent1.count.isLess(than: ent2.count)// == ComparisonResult.orderedAscending
+                    //
+                    //                })
+                    for entityCompare in self.entities2! {
+                        if let entity = self.entities1?.first(where: {$0.entityName == entityCompare.entityName}) {
+                            self.combinedArray.append(CombinedEntity(name: entityCompare.entityName, entity1: entityCompare, entity2: entity))
+                        }
+                        else {
+                            self.combinedArray.append(CombinedEntity(name: entityCompare.entityName, entity1: nil, entity2: entityCompare))
+                        }
+                        
+                        
+                        
+                    }
+                    
+                    var uniqueElements = self.entities1?.filter({ (entity) -> Bool in
+                        return !(self.entities2?.contains(where: {$0.entityName == entity.entityName}) ?? false )
+                    }) ?? []
+                    
+                    
+                    for element in uniqueElements {
+                        self.combinedArray.append(CombinedEntity(name: element.entityName, entity1: element, entity2: nil))
+                    }
+                    
+                    
+                    self.tableView.reloadData()
+                }
+            })
+        }
+    }
+    
     var entities2:[Entity]?
     var articles:[Article]?
     var combinedArray: [CombinedEntity] = []
@@ -38,64 +102,56 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
         self.title = "" //termOne + "And" + termTwo
         
         
-        termOneLabel.text = termOne
-        leftTruncationStatus = termOneLabel.isTruncating
-        
-        if leftTruncationStatus {
-            rightFacingArrowImageView.isHidden = false
-        }
-        
-        termTwoLabel.text = termTwo
-        rightTruncationStatus = termTwoLabel.isTruncating
-        
-        if rightTruncationStatus {
-            leftFacingArrowImageView.isHidden = false
-        }
         
         //MARK: Do the search
-        AlchemyNewsGetter.search(searchText: termTwo, userInfo: nil, dispatchQueueForHandler: DispatchQueue.main, completionHandler: { (userInfo, entities, articles, errorString) in
-            if errorString != nil {
-                print(errorString!)
-                self.entities2 = nil
-                self.articles = nil
-            }
-            else {
-                self.entities2 = entities
-                self.articles = articles
-//                self.entities2 = entities?.sorted(by: { (ent1, ent2) -> Bool in
-//                    return !ent1.count.isLess(than: ent2.count)// == ComparisonResult.orderedAscending
+//        AlchemyNewsGetter.search(searchText: termTwo, userInfo: nil, dispatchQueueForHandler: DispatchQueue.main, completionHandler: { (userInfo, entities, articles, errorString) in
+//            if errorString != nil {
+//                print(errorString!)
+//                self.entities2 = nil
+//                self.articles = nil
+//            }
+//            else {
+//                self.entities2 = entities
+//                self.articles = articles
+////                self.entities2 = entities?.sorted(by: { (ent1, ent2) -> Bool in
+////                    return !ent1.count.isLess(than: ent2.count)// == ComparisonResult.orderedAscending
+////                    
+////                })
+//                for entityCompare in self.entities2! {
+//                    if let entity = self.entities1?.first(where: {$0.entityName == entityCompare.entityName}) {
+//                        self.combinedArray.append(CombinedEntity(name: entityCompare.entityName, entity1: entityCompare, entity2: entity))
+//                    }
+//                    else {
+//                        self.combinedArray.append(CombinedEntity(name: entityCompare.entityName, entity1: nil, entity2: entityCompare))
+//                    }
 //                    
-//                })
-                for entityCompare in self.entities2! {
-                    if let entity = self.entities1?.first(where: {$0.entityName == entityCompare.entityName}) {
-                        self.combinedArray.append(CombinedEntity(name: entityCompare.entityName, entity1: entityCompare, entity2: entity))
-                    }
-                    else {
-                        self.combinedArray.append(CombinedEntity(name: entityCompare.entityName, entity1: nil, entity2: entityCompare))
-                    }
-                    
-                    
-                    
-                }
-                
-                var uniqueElements = self.entities1?.filter({ (entity) -> Bool in
-                    return !(self.entities2?.contains(where: {$0.entityName == entity.entityName}) ?? false )
-                }) ?? []
-                
-                
-                for element in uniqueElements {
-                    self.combinedArray.append(CombinedEntity(name: element.entityName, entity1: element, entity2: nil))
-                }
-                
-                
-                self.tableView.reloadData()
-            }
-        })
+//                    
+//                    
+//                }
+//                
+//                var uniqueElements = self.entities1?.filter({ (entity) -> Bool in
+//                    return !(self.entities2?.contains(where: {$0.entityName == entity.entityName}) ?? false )
+//                }) ?? []
+//                
+//                
+//                for element in uniqueElements {
+//                    self.combinedArray.append(CombinedEntity(name: element.entityName, entity1: element, entity2: nil))
+//                }
+//                
+//                
+//                self.tableView.reloadData()
+//            }
+//        })
 
         
         
         
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        termOneLabel?.text = termOne
+        termTwoLabel?.text = termTwo
     }
     
     override func didReceiveMemoryWarning() {
@@ -112,6 +168,7 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         let result = combinedArray[indexPath.row]
+        
         if let term1 = result.entity1, let term2 = result.entity2{
             (cell as? ComparisonTableViewCell)?.configure(withTitle: result.entityName, relevance1: term1.relevance, relevance2: term2.relevance)
             
@@ -136,7 +193,7 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
         return cell
     }
     
-    @IBAction func showFullLeftLabel(_ sender: Any) {
+    @IBAction func showFullLeftLabel(_ sender: UITapGestureRecognizer) {
         guard leftTruncationStatus else { return }
         
         rightFacingArrowImageView.image = rightLabelView.isHidden ? UIImage(named: "Right Arrow") : UIImage(named: "Left Arrow")
@@ -144,7 +201,7 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
         rightLabelView.isHidden = !rightLabelView.isHidden
     }
     
-    @IBAction func showFullRightLabel(_ sender: Any) {
+    @IBAction func showFullRightLabel(_ sender: UITapGestureRecognizer) {
         guard rightTruncationStatus else { return }
         
         leftFacingArrowImageView.image = leftLabelView.isHidden ? UIImage(named: "Left Arrow") : UIImage(named: "Right Arrow")
@@ -157,6 +214,8 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
         if let destination = segue.destination as? CompareDetailViewController {
             
             destination.combinedEntity = combinedArray[(tableView.indexPathForSelectedRow?.row)!]
+            destination.search1 = termTwo
+            destination.search2 = termOne
             
             
         }

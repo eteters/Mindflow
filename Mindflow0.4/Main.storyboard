@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ge0-v1-6zs">
-                                <rect key="frame" x="75" y="320.5" width="225" height="25"/>
+                                <rect key="frame" x="75" y="124" width="225" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="225" id="aHN-Mr-6qs"/>
                                     <constraint firstAttribute="height" constant="25" id="qEm-3A-ak6"/>
@@ -33,14 +33,14 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m87-ui-pSD">
-                                <rect key="frame" x="75" y="353.5" width="225" height="32.5"/>
+                                <rect key="frame" x="75" y="157" width="225" height="30"/>
                                 <state key="normal" title="Find Out What is Related to This!"/>
                                 <connections>
                                     <segue destination="pJh-lk-Jxw" kind="show" id="YYC-nk-SCN"/>
                                 </connections>
                             </button>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kcr-74-mtR">
-                                <rect key="frame" x="75" y="452" width="225" height="25"/>
+                                <rect key="frame" x="75" y="253" width="225" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="2xM-ie-zVO"/>
                                     <constraint firstAttribute="width" constant="225" id="Vhb-7a-1NM"/>
@@ -50,14 +50,14 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qps-sT-k2k">
-                                <rect key="frame" x="75" y="414" width="232" height="30"/>
+                                <rect key="frame" x="75" y="215" width="232" height="30"/>
                                 <state key="normal" title="Or Compare It With A New Term..."/>
                                 <connections>
                                     <action selector="showCompare:" destination="EMM-9E-SFT" eventType="touchUpInside" id="1Te-i9-jml"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qra-sT-eCh">
-                                <rect key="frame" x="135" y="485" width="104" height="30"/>
+                                <rect key="frame" x="135" y="286" width="104" height="30"/>
                                 <state key="normal" title="Compare Both!"/>
                                 <connections>
                                     <segue destination="fKB-Xp-53e" kind="show" id="HQA-aK-DNj"/>
@@ -67,11 +67,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Qra-sT-eCh" firstAttribute="leading" secondItem="Ma1-am-y82" secondAttribute="leadingMargin" constant="119" id="2yh-4K-Ou9"/>
-                            <constraint firstItem="mhC-bv-l31" firstAttribute="top" secondItem="m87-ui-pSD" secondAttribute="bottom" constant="281" id="7Qe-17-cZ3"/>
                             <constraint firstItem="qps-sT-k2k" firstAttribute="top" secondItem="m87-ui-pSD" secondAttribute="bottom" constant="28" id="9IJ-0G-JmQ"/>
-                            <constraint firstItem="Kcr-74-mtR" firstAttribute="top" secondItem="ge0-v1-6zs" secondAttribute="bottom" constant="106.5" id="NoP-pb-3T7"/>
-                            <constraint firstItem="ge0-v1-6zs" firstAttribute="centerY" secondItem="Ma1-am-y82" secondAttribute="centerY" id="SoH-w7-op2"/>
+                            <constraint firstItem="ge0-v1-6zs" firstAttribute="top" secondItem="iWr-Ih-gg6" secondAttribute="bottom" constant="60" id="RdZ-M8-c0J"/>
                             <constraint firstItem="Kcr-74-mtR" firstAttribute="trailing" secondItem="ge0-v1-6zs" secondAttribute="trailing" id="bgx-Up-9LR"/>
+                            <constraint firstItem="Kcr-74-mtR" firstAttribute="top" secondItem="qps-sT-k2k" secondAttribute="bottom" constant="8" id="cx0-68-jAW"/>
                             <constraint firstItem="qps-sT-k2k" firstAttribute="leading" secondItem="m87-ui-pSD" secondAttribute="leading" id="h0I-zi-M6x"/>
                             <constraint firstItem="m87-ui-pSD" firstAttribute="top" secondItem="ge0-v1-6zs" secondAttribute="bottom" constant="8" symbolic="YES" id="icn-Ad-tgu"/>
                             <constraint firstItem="m87-ui-pSD" firstAttribute="centerX" secondItem="Ma1-am-y82" secondAttribute="centerX" id="jdF-n8-YRr"/>
@@ -485,13 +484,13 @@
                                                         <rect key="frame" x="8" y="21" width="171" height="24"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="im9-6j-yhE">
-                                                                <rect key="frame" x="0.0" y="0.0" width="171" height="24"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="153" height="24"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Right Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="E8o-fH-pU7">
-                                                                <rect key="frame" x="171" y="0.0" width="0.0" height="24"/>
+                                                                <rect key="frame" x="157" y="0.0" width="14" height="24"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="24" id="8n4-n7-rpF"/>
                                                                     <constraint firstAttribute="width" constant="14" id="Jwf-LE-B8L"/>
@@ -518,14 +517,14 @@
                                                         <rect key="frame" x="8" y="20" width="171" height="24"/>
                                                         <subviews>
                                                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Left Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="SSt-78-yq4">
-                                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="24"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="14" height="24"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="24" id="Auj-7Z-2fw"/>
                                                                     <constraint firstAttribute="width" constant="14" id="dZN-az-c4w"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxm-fy-s53">
-                                                                <rect key="frame" x="0.0" y="0.0" width="171" height="24"/>
+                                                                <rect key="frame" x="18" y="0.0" width="153" height="24"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -570,7 +569,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4G-AI-RIY">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4G-AI-RIY">
                                                     <rect key="frame" x="167" y="21.5" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -651,24 +650,24 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="leftFacingArrowImageView" destination="SSt-78-yq4" id="cwU-yc-w6X"/>
-                        <outlet property="leftLabelView" destination="anU-tZ-VKN" id="vag-ox-o5p"/>
-                        <outlet property="rightFacingArrowImageView" destination="E8o-fH-pU7" id="TxV-FL-U7l"/>
-                        <outlet property="rightLabelView" destination="GAS-RV-igP" id="fiI-06-PEQ"/>
-                        <outlet property="tableView" destination="hR0-Hp-rPI" id="mz8-Hq-7GA"/>
-                        <outlet property="termOneLabel" destination="im9-6j-yhE" id="gz1-y6-zAh"/>
-                        <outlet property="termTwoLabel" destination="kxm-fy-s53" id="1JZ-yi-qVY"/>
+                        <outlet property="leftFacingArrowImageView" destination="SSt-78-yq4" id="7w8-kF-Cz0"/>
+                        <outlet property="leftLabelView" destination="anU-tZ-VKN" id="3C0-gN-s5I"/>
+                        <outlet property="rightFacingArrowImageView" destination="E8o-fH-pU7" id="SxE-SB-Wis"/>
+                        <outlet property="rightLabelView" destination="GAS-RV-igP" id="Uyv-DJ-BLw"/>
+                        <outlet property="tableView" destination="hR0-Hp-rPI" id="xlh-3i-dOG"/>
+                        <outlet property="termOneLabel" destination="im9-6j-yhE" id="TFO-me-pZY"/>
+                        <outlet property="termTwoLabel" destination="kxm-fy-s53" id="bl7-py-fOW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kn1-yO-cQV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="qxy-Xx-pbm" userLabel="Left Label View Tap Gesture Recognizer">
                     <connections>
-                        <action selector="showFullLeftLabel:" destination="fKB-Xp-53e" id="fj2-R9-eWE"/>
+                        <action selector="showFullLeftLabel:" destination="fKB-Xp-53e" id="QAT-Db-HRX"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="cts-WO-Mbb" userLabel="Right Label View Tap Gesture Recognizer">
                     <connections>
-                        <action selector="showFullRightLabel:" destination="fKB-Xp-53e" id="0Yo-f4-OUH"/>
+                        <action selector="showFullRightLabel:" destination="fKB-Xp-53e" id="pwU-pn-iS6"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

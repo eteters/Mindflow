@@ -31,6 +31,8 @@ class ComparisonTableViewCell: UITableViewCell {
         resultLabel?.text = nil
         termOneComparisonResultLabel?.text = nil
         termTwoComparisonResultLabel?.text = nil
+        infobar1.progress = 0.0
+        infobar2.progress = 0.0
     }
     
     func configure(withTitle entity: String, relevance1: Double, relevance2: Double) {

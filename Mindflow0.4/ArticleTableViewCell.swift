@@ -28,5 +28,14 @@ class ArticleTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    override func prepareForReuse() {
+        articleTitleLabel.text = nil
+        pubDateLabel.text = nil
+        articleInfo3Label.text = nil
+        articleInfo4Label.text = nil
+        articleInfo5Label.text = nil
+
+    }
 
 }

@@ -57,6 +57,7 @@ class SearchViewController: UIViewController {
                     destination.entities1 = entities
                     destination.termOne = text
                     destination.termTwo = text2
+                    destination.tableView.reloadData()
                 }
             })
 

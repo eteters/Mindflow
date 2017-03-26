@@ -22,4 +22,7 @@ class OptionsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    override func prepareForReuse() {
+        optionTitle.text = nil
+    }
 }

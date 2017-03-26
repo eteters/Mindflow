@@ -54,7 +54,7 @@ class EntityDetailViewController: UIViewController, UITableViewDelegate, UITable
         cell.articleTitleLabel.text = entity.articles[indexPath.row].title
         cell.articleInfo3Label.text = entity.articles[indexPath.row].author
         if let relevance = entity.articles[indexPath.row].entityRelevance {
-            cell.articleInfo4Label.text = String(relevance)
+            cell.articleInfo4Label.text = "Relevance to Article: " + String(relevance)
         }
         cell.articleInfo5Label.text = ""
         
@@ -99,16 +99,13 @@ class EntityDetailViewController: UIViewController, UITableViewDelegate, UITable
             let request = URLRequest(url: url!)
             destination.request = request
             destination.term = entity.entityName
-        }
-        else if let destination = segue.destination as? EntityTableViewController {
+        } else if let destination = segue.destination as? EntityTableViewController {
             destination.searchDone = false
             destination.searchTerm = entity.entityName
-        }
-        
-        else if let destination = segue.destination as? StationaryExpandingAboveTextViewController {
-            destination.entities1 = entityPass
+        } else if let destination = segue.destination as? StationaryExpandingAboveTextViewController {
             destination.termOne = term1Pass
             destination.termTwo = entity.entityName
+            destination.entities1 = entityPass
         }
     }
     
