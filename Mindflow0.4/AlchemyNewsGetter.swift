@@ -151,7 +151,7 @@ class AlchemyNewsGetter { //reference type I think
                                                 entityArray[ind].count += tempEntity.count
                                                 entityArray[ind].articles.append(contentsOf: tempEntity.articles)
                                                 //entityArray[ind].relevance = (tempEntity.relevance + entityArray[ind].relevance)/2
-                                                entityArray[ind].relevance = (tempEntity.relevance + entityArray[ind].relevance * (entityArray[ind].articles.count - 1) ) / entityArray[ind].articles.count
+                                                entityArray[ind].relevance = (tempEntity.relevance + entityArray[ind].relevance * (Double(entityArray[ind].articles.count - 1)) ) / Double(entityArray[ind].articles.count)
                                                 //entityArray[ind].sentimentScore = (tempEntity.sentimentScore + entityArray[ind].sentimentScore)/2
                                             }
                                             
