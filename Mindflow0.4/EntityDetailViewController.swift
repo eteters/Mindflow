@@ -22,6 +22,8 @@ class EntityDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     var term1Pass = ""
     
+    var historyDelegate: SearchViewController?
+    
     
     @IBOutlet weak var articleTable: UITableView!
     
@@ -66,6 +68,9 @@ class EntityDetailViewController: UIViewController, UITableViewDelegate, UITable
             cell.pubDateLabel.text = dateFormatter.string(from: date)
 
         }
+        cell.detailViewController = self
+        cell.url = URL(string: entity.articles[indexPath.row].url)
+        
         
         
         return cell
@@ -102,10 +107,13 @@ class EntityDetailViewController: UIViewController, UITableViewDelegate, UITable
         } else if let destination = segue.destination as? EntityTableViewController {
             destination.searchDone = false
             destination.searchTerm = entity.entityName
+            destination.historyDelegate = historyDelegate
         } else if let destination = segue.destination as? StationaryExpandingAboveTextViewController {
+            destination.searchDone = false
             destination.termOne = term1Pass
             destination.termTwo = entity.entityName
             destination.entities1 = entityPass
+            destination.historyDelegate = self.historyDelegate
         }
     }
     

@@ -1,18 +1,17 @@
 //
-//  EntityTableViewCell.swift
+//  HistoryTableViewCell.swift
 //  Mindflow0.4
 //
-//  Created by Evan Teters on 3/9/17.
+//  Created by Evan Teters on 3/28/17.
 //  Copyright © 2017 Evan Teters. All rights reserved.
 //
 
 import UIKit
 
-class EntityTableViewCell: UITableViewCell {
+class HistoryTableViewCell: UITableViewCell {
+    @IBOutlet weak var termLabel: UILabel!
+    @IBOutlet weak var numResultLabel: UILabel!
 
-    @IBOutlet weak var entityText: UILabel!
-    @IBOutlet weak var relevanceLabel: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,10 +23,4 @@ class EntityTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-
-    override func prepareForReuse() {
-        entityText.text = nil
-        relevanceLabel.text = nil
-    }
-    
 }

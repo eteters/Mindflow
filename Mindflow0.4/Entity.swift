@@ -17,7 +17,10 @@ struct Entity {
     var sentimentScore: Double
     var entityName:String
     var entityType:String
-    var articles = [Article]() // Do we only pick out a unique entity once and store all doc info in here?
+    var articles = [Article]()
+    var isHighlighted = false //Could also be an enum with state NONE HIDDEN HIGLIGHT
+    var myHidden = false //Need this, actually/
+    // Do we only pick out a unique entity once and store all doc info in here?
     //Or do we make a new entity for each article just to keep everything straight?
     //Will this make querying harder?
     //

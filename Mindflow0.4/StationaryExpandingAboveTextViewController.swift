@@ -19,6 +19,8 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
     @IBOutlet weak var rightLabelView: UIView!
     
   
+    var searchDone = false
+    
     var termOne: String = "" {
         didSet {
             termOneLabel?.text = termOne
@@ -35,6 +37,8 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
     var leftTruncationStatus = false
     var rightTruncationStatus = false
     
+    var historyDelegate:SearchViewController?
+    
     
     var entities1:[Entity]? {
         didSet {
@@ -50,45 +54,53 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
                 leftFacingArrowImageView.isHidden = false
             }
 
+            if (!searchDone) {
+                
             
-            AlchemyNewsGetter.search(searchText: termTwo, userInfo: nil, dispatchQueueForHandler: DispatchQueue.main, completionHandler: { (userInfo, entities, articles, errorString) in
-                if errorString != nil {
-                    print(errorString!)
-                    self.entities2 = nil
-                    self.articles = nil
-                }
-                else {
-                    self.entities2 = entities
-                    self.articles = articles
-                    //                self.entities2 = entities?.sorted(by: { (ent1, ent2) -> Bool in
-                    //                    return !ent1.count.isLess(than: ent2.count)// == ComparisonResult.orderedAscending
-                    //
-                    //                })
-                    for entityCompare in self.entities2! {
-                        if let entity = self.entities1?.first(where: {$0.entityName == entityCompare.entityName}) {
-                            self.combinedArray.append(CombinedEntity(name: entityCompare.entityName, entity1: entityCompare, entity2: entity))
+                AlchemyNewsGetter.search(searchText: termTwo, userInfo: nil, dispatchQueueForHandler: DispatchQueue.main, completionHandler: { (userInfo, entities, articles, errorString) in
+                    if errorString != nil {
+                        print(errorString!)
+                        self.entities2 = nil
+                        self.articles = nil
+                        if errorString == "server did not return OK" {
+                            self.retrySearch()
                         }
-                        else {
-                            self.combinedArray.append(CombinedEntity(name: entityCompare.entityName, entity1: nil, entity2: entityCompare))
+
+                    }
+                    else {
+                        self.entities2 = entities
+                        self.articles = articles
+                        //                self.entities2 = entities?.sorted(by: { (ent1, ent2) -> Bool in
+                        //                    return !ent1.count.isLess(than: ent2.count)// == ComparisonResult.orderedAscending
+                        //
+                        //                })
+                        for entityCompare in self.entities2! {
+                            if let entity = self.entities1?.first(where: {$0.entityName == entityCompare.entityName}) {
+                                self.combinedArray.append(CombinedEntity(name: entityCompare.entityName, entity1: entityCompare, entity2: entity))
+                            }
+                            else {
+                                self.combinedArray.append(CombinedEntity(name: entityCompare.entityName, entity1: nil, entity2: entityCompare))
+                            }
+                            
+                            
+                            
                         }
                         
+                        var uniqueElements = self.entities1?.filter({ (entity) -> Bool in
+                            return !(self.entities2?.contains(where: {$0.entityName == entity.entityName}) ?? false )
+                        }) ?? []
                         
                         
+                        for element in uniqueElements {
+                            self.combinedArray.append(CombinedEntity(name: element.entityName, entity1: element, entity2: nil))
+                        }
+                        //Adding to the history
+                        self.historyDelegate?.historyPass.append(History(term1:self.termOne, term2: self.termTwo, entCompares:self.combinedArray))
+                        
+                        self.tableView.reloadData()
                     }
-                    
-                    var uniqueElements = self.entities1?.filter({ (entity) -> Bool in
-                        return !(self.entities2?.contains(where: {$0.entityName == entity.entityName}) ?? false )
-                    }) ?? []
-                    
-                    
-                    for element in uniqueElements {
-                        self.combinedArray.append(CombinedEntity(name: element.entityName, entity1: element, entity2: nil))
-                    }
-                    
-                    
-                    self.tableView.reloadData()
-                }
-            })
+                })
+            }
         }
     }
     
@@ -100,53 +112,6 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
         super.viewDidLoad()
         
         self.title = "" //termOne + "And" + termTwo
-        
-        
-        
-        //MARK: Do the search
-//        AlchemyNewsGetter.search(searchText: termTwo, userInfo: nil, dispatchQueueForHandler: DispatchQueue.main, completionHandler: { (userInfo, entities, articles, errorString) in
-//            if errorString != nil {
-//                print(errorString!)
-//                self.entities2 = nil
-//                self.articles = nil
-//            }
-//            else {
-//                self.entities2 = entities
-//                self.articles = articles
-////                self.entities2 = entities?.sorted(by: { (ent1, ent2) -> Bool in
-////                    return !ent1.count.isLess(than: ent2.count)// == ComparisonResult.orderedAscending
-////                    
-////                })
-//                for entityCompare in self.entities2! {
-//                    if let entity = self.entities1?.first(where: {$0.entityName == entityCompare.entityName}) {
-//                        self.combinedArray.append(CombinedEntity(name: entityCompare.entityName, entity1: entityCompare, entity2: entity))
-//                    }
-//                    else {
-//                        self.combinedArray.append(CombinedEntity(name: entityCompare.entityName, entity1: nil, entity2: entityCompare))
-//                    }
-//                    
-//                    
-//                    
-//                }
-//                
-//                var uniqueElements = self.entities1?.filter({ (entity) -> Bool in
-//                    return !(self.entities2?.contains(where: {$0.entityName == entity.entityName}) ?? false )
-//                }) ?? []
-//                
-//                
-//                for element in uniqueElements {
-//                    self.combinedArray.append(CombinedEntity(name: element.entityName, entity1: element, entity2: nil))
-//                }
-//                
-//                
-//                self.tableView.reloadData()
-//            }
-//        })
-
-        
-        
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -212,13 +177,49 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? CompareDetailViewController {
-            
             destination.combinedEntity = combinedArray[(tableView.indexPathForSelectedRow?.row)!]
             destination.search1 = termTwo
             destination.search2 = termOne
-            
+        }
+        if let destination = segue.destination as? OptionsTableViewController {
+            destination.historyDelegate = self.historyDelegate
             
         }
     }
+    func retrySearch(){
+        if AlchemyNewsGetter.currentKey < AlchemyNewsGetter.apiKeys.count {
+            AlchemyNewsGetter.currentKey += 1
+        }
+        else {
+            self.title = "Out of keys"
+            return
+        }
+        
+        AlchemyNewsGetter.search(searchText: termTwo, userInfo: nil, dispatchQueueForHandler: DispatchQueue.main, completionHandler: { (userInfo, entities, articles, errorString) in
+            if errorString != nil {
+                print(errorString!)
+                self.entities2 = nil
+                self.articles = nil
+                if errorString == "server did not return OK" {
+                    self.retrySearch()
+                }
+            }
+            else {
+                self.entities2 = entities
+                self.articles = articles
+                self.entities2 = entities?.sorted(by: { (ent1, ent2) -> Bool in
+                    return !ent1.count.isLess(than: ent2.count)// == ComparisonResult.orderedAscending
+                    
+                })
+                self.historyDelegate?.historyPass.append(History(term: self.termTwo, ents: self.entities2))
+                self.tableView.reloadData()
+            }
+        })
+        searchDone = true
+        
+    }
+
+    
+    
     
 }

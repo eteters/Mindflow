@@ -9,7 +9,9 @@
 import UIKit
 
 class ArticleTableViewCell: UITableViewCell {
-
+    var url:URL?
+    var detailViewController:EntityDetailViewController?
+    var twoDetailViewController:CompareDetailViewController?
     @IBOutlet weak var articleTitleLabel: UILabel!
     @IBOutlet weak var pubDateLabel: UILabel!
     @IBOutlet weak var articleInfo3Label: UILabel!
@@ -21,6 +23,21 @@ class ArticleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    @IBAction func share(_ sender: Any) {
+        displayShareSheet(shareContent: self.url!)
+    }
+    func displayShareSheet(shareContent:URL) {
+        let activityViewController = UIActivityViewController(activityItems: [shareContent as NSURL], applicationActivities: nil)
+        //presentViewConroller(activityViewController, animated: true, completion: {})
+        if let detailViewController = detailViewController {
+            detailViewController.present(activityViewController, animated: true, completion: {})
+
+        }
+        else if let compareControler = twoDetailViewController {
+            compareControler.present(activityViewController, animated: true, completion: {})
+        }
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -13,9 +13,11 @@ class OptionsTableViewController: UITableViewController {
     
     var previousViewController:EntityTableViewController?
     
-    let headers = ["Sort By","View Options", "History"]
+    let headers = ["Sort By","View Options", "History", "Home Screen"]
     
     var numSelected = 0
+    
+    var historyDelegate:SearchViewController?
     
     //weak var delegate: optionTableViewDelegate?
     
@@ -62,8 +64,9 @@ class OptionsTableViewController: UITableViewController {
         case 2:
             performSegue(withIdentifier: "historysegue", sender: self)
             break
-            
-            
+        case 3:
+            shouldPerformSegue(withIdentifier: "gohome", sender: self)
+            break
         default:
             return //never happens
         }
@@ -72,6 +75,9 @@ class OptionsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? SortTableViewController {
             destination.delegate = previousViewController
+        }
+        if let destination = segue.destination as? HistoryTableViewController {
+            destination.historyDelegate = self.historyDelegate
         }
         //else if let destination = segue.destination as?
     }

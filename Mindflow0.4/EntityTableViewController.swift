@@ -22,7 +22,6 @@ class EntityTableViewController: UIViewController, UITableViewDataSource, UITabl
     func sortWasSelected(_ data: Int) {
         sortOption = data
         sortChanged = true
-        
         if (sortChanged){
             switch sortOption {
             case 0:
@@ -32,6 +31,7 @@ class EntityTableViewController: UIViewController, UITableViewDataSource, UITabl
                     
                 })
                 self.entityTable.reloadData()
+                //self.entityTable.provideImageData(<#T##data: UnsafeMutableRawPointer##UnsafeMutableRawPointer#>, bytesPerRow: <#T##Int#>, origin: <#T##Int#>, <#T##y: Int##Int#>, size: <#T##Int#>, <#T##height: Int##Int#>, userInfo: <#T##Any?#>)
                 sortChanged = false
                 break;
                 
@@ -89,6 +89,8 @@ class EntityTableViewController: UIViewController, UITableViewDataSource, UITabl
     
     var articles:[Article]?
     
+    var historyPass = [History]()
+    
     var sortOption = 1
     
     var searchTerm = ""
@@ -96,6 +98,10 @@ class EntityTableViewController: UIViewController, UITableViewDataSource, UITabl
     var searchDone = false
     
     var sortChanged = false
+    
+    var historyDelegate:SearchViewController?
+    
+    var days = ""
     
     let posColor = 0xB1F2F0
     let negColor = 0xCFF69D
@@ -105,19 +111,23 @@ class EntityTableViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let HeaderView = entityTable.tableHeaderView as? HeaderView {
-                HeaderView.searchTitle.text = searchTerm
-            }
-        
+//        if let HeaderView = entityTable.tableHeaderView as? HeaderView {
+//            
+//        }
+    
         
         self.title = searchTerm
         
         if (!searchDone){
+            AlchemyNewsGetter.start = days
             AlchemyNewsGetter.search(searchText: searchTerm, userInfo: nil, dispatchQueueForHandler: DispatchQueue.main, completionHandler: { (userInfo, entities, articles, errorString) in
                 if errorString != nil {
                     print(errorString!)
                     self.entities = nil
                     self.articles = nil
+                    if errorString == "server did not return OK" {
+                     self.retrySearch()
+                    }
                 }
                 else {
                     self.entities = entities
@@ -126,6 +136,7 @@ class EntityTableViewController: UIViewController, UITableViewDataSource, UITabl
                         return !ent1.count.isLess(than: ent2.count)// == ComparisonResult.orderedAscending
                         
                     })
+                    self.historyDelegate?.historyPass.append(History(term: self.searchTerm, ents: self.entities))
                     self.entityTable.reloadData()
                 }
             })
@@ -155,32 +166,13 @@ class EntityTableViewController: UIViewController, UITableViewDataSource, UITabl
         //let relString = String(describing: entities?[indexPath.row].relevance) as String
         
         
-        let relevance = entities?[indexPath.row].relevance
+        let relevance = entities?[indexPath.row].relevance.percentage()
         if let relevance = relevance{
-            let rel = Float(relevance)
-            //rel = Float(round((100+rel)/100))
-            cell.relevanceLabel.text = String(format: "%.2f", rel) //How to get 2 decimal points?
-            cell.infoBar.progress = rel
+            cell.relevanceLabel.text = String(format: "%d", relevance) + "%"
+            
         }
-        else {cell.infoBar.progress = 0}
         
         
-        //cell.infoBar.progress = entities[indexPath.row].relevance! as Float
-        let sentiment = entities?[indexPath.row].sentimentType
-        if sentiment == "negative" {
-            cell.backgroundColor = UIColor(netHex: negColor)
-            //cell.infoBar.progressTintColor = UIColor(netHex: 0xfab43f) //neg:fab43f pos:a9c326
-        }
-            
-        else if sentiment == "positive" {
-            cell.backgroundColor = UIColor(netHex: posColor)
-            //cell.infoBar.progressTintColor = UIColor(netHex: 0xa9c326)
-        }
-            
-        else {
-            //cell.infoBar.progressTintColor = UIColor.gray
-        }
-        cell.infoBar.setProgress(cell.infoBar.progress, animated: true)
         
         return cell
     }
@@ -198,12 +190,47 @@ class EntityTableViewController: UIViewController, UITableViewDataSource, UITabl
         else {return (1)} //Hopefully this doesn't happen? Empty cell. Can be zero?
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let highlight:UITableViewRowAction
+        guard let ents = entities?[indexPath.row] else {
+            return nil
+        }
+        if ents.isHighlighted {
+            highlight = UITableViewRowAction(style: .default, title: "de-Highlight", handler: { (UITableViewRowAction, indexPath) in
+                UITableViewRowAction.backgroundColor = UIColor.white
+                let cell = self.entityTable.cellForRow(at: indexPath) as? EntityTableViewCell
+                cell?.backgroundColor = UIColor.white
+                self.entities?[indexPath.row].isHighlighted = false
+            })
+            
+        }
+        else {
+            
+            highlight = UITableViewRowAction(style: .default, title: "Highlight") { (UITableViewRowAction, indexPath) in
+                let cell = self.entityTable.cellForRow(at: indexPath) as? EntityTableViewCell
+                cell?.backgroundColor = UIColor(netHex: 0xFFFD90)
+                self.entities?[indexPath.row].isHighlighted = true
+                UITableViewRowAction.backgroundColor = UIColor(netHex: 0xFFFD90)
+                
+            }
+        }
+        let hide = UITableViewRowAction(style: .default, title: "Hide") { (UITableViewRowAction, indexPath) in
+            let cell = self.entityTable.cellForRow(at: indexPath) as? EntityTableViewCell
+            cell?.isHidden = true
+            UITableViewRowAction.backgroundColor = UIColor(netHex: 0xFFFD90)
+            
+        }
+        
+        return[highlight, hide]
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? EntityDetailViewController{
             if let entities = entities {
                 destination.entity = entities[(entityTable.indexPathForSelectedRow?.row)!] //weird unwrapping but okay?
                 destination.entityPass  = entities
                 destination.term1Pass = searchTerm
+                destination.historyDelegate = self.historyDelegate
             }
             
         }
@@ -212,8 +239,43 @@ class EntityTableViewController: UIViewController, UITableViewDataSource, UITabl
 //            destination.numSelected = sortOption
 //        }
         if let destination = segue.destination as? OptionsTableViewController {
-            destination.previousViewController = self 
+            destination.previousViewController = self
+            destination.historyDelegate = self.historyDelegate
         }
+        
+    }
+    
+    func retrySearch(){
+        if AlchemyNewsGetter.currentKey < AlchemyNewsGetter.apiKeys.count {
+            AlchemyNewsGetter.currentKey += 1
+        }
+        else {
+            self.title = "Out of keys"
+            return
+        }
+        
+        AlchemyNewsGetter.start = days
+        AlchemyNewsGetter.search(searchText: searchTerm, userInfo: nil, dispatchQueueForHandler: DispatchQueue.main, completionHandler: { (userInfo, entities, articles, errorString) in
+            if errorString != nil {
+                print(errorString!)
+                self.entities = nil
+                self.articles = nil
+                if errorString == "server did not return OK" {
+                    self.retrySearch()
+                }
+            }
+            else {
+                self.entities = entities
+                self.articles = articles
+                self.entities = entities?.sorted(by: { (ent1, ent2) -> Bool in
+                    return !ent1.count.isLess(than: ent2.count)// == ComparisonResult.orderedAscending
+                    
+                })
+                self.historyDelegate?.historyPass.append(History(term: self.searchTerm, ents: self.entities))
+                self.entityTable.reloadData()
+            }
+        })
+        searchDone = true
         
     }
     

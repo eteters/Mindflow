@@ -37,10 +37,10 @@ class ComparisonTableViewCell: UITableViewCell {
     
     func configure(withTitle entity: String, relevance1: Double, relevance2: Double) {
         resultLabel?.text = entity.capitalized
-        termOneComparisonResultLabel?.text = String(format: "%.2f", relevance1)
-        termTwoComparisonResultLabel?.text = String(format: "%.2f", relevance2)
+        termOneComparisonResultLabel?.text = String(relevance1.percentage())
+        termTwoComparisonResultLabel?.text = String(relevance2.percentage())
         
-        let rotationAngle = CGFloat(M_PI)
+        let rotationAngle = CGFloat(Double.pi)
         
         infobar1.transform = CGAffineTransform(rotationAngle: rotationAngle)
         

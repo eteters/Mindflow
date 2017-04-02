@@ -11,10 +11,13 @@ import Foundation
 class AlchemyNewsGetter { //reference type I think
 
     static var searchTerm = ""
-    static var apiKey = "876b45c2688af687e85c6e76d1ad7e84524a97f2"  //  45b5c28f7ecf35b31792fc2ed970d5b6a3da3d0b  HUMERA'S CODE: 876b45c2688af687e85c6e76d1ad7e84524a97f2 
+    static var apiKeys = ["5bbcf2bb3d9f0afedb5672b0d787cc2c6207553a", "30929c0c0eb414a6b01db1542387f69e7263f41a", "f5943c50c5fa75575aed82097e65d82cbf31d90f", "43475467de10b00c9f6aa5a5daa5ed6110e34316", "fa916d3396de9eb70a3b85ea0b4109cb5a852c6d", "c4d7ddd19a12a535b37e8101e5464d0c3a47b254", "52a01b6df923b428f424a6d7822eab2ad141a099", "bec96835971acbb685966db5ffa6c003261ed507", "5d6f80f568b05611fad5eff95366d728f1699d8e", "3e7dabbe5a0f198fbc53730e1b8cbd98b6621b78"]
+    //"5bbcf2bb3d9f0afedb5672b0d787cc2c6207553a"  //  5bbcf2bb3d9f0afedb5672b0d787cc2c6207553a
+    //NO longer works: 45b5c28f7ecf35b31792fc2ed970d5b6a3da3d0b  HUMERA'S CODE: 30929c0c0eb414a6b01db1542387f69e7263f41a
     static var baseUrlString = "https://gateway-a.watsonplatform.net/calls/data/GetNews?"
     static var start = "now-1d"
     static var end = "now"
+    static var currentKey = 0;
     //maxResults may need to be "count" or vice versa. Find the difference between the two.
     static var maxResults = "2" //easier to keep this as a string or convert to string??
 
@@ -49,8 +52,8 @@ class AlchemyNewsGetter { //reference type I think
             })
             return
         }
-        //MARK: THIS CODE MIGHT NOT WORK, DO I USE COUNT OR MAXRESULTS IDK "&rank=high^medium" +
-        let urlString = baseUrlString + "apikey=" + apiKey + "&outputMode=json&start=" + start + "&end=" + end + "&rank=high" + "&maxResults=" + maxResults + "&q.enriched.url.enrichedTitle.keywords.keyword.text=" + escapedSearchText + "&return=" + returnTypes + "&dedup=1"
+        //MARK: THIS CODE MIGHT NOT WORK, DO I USE COUNT OR MAXRESULTS IDK "&rank=high^medium" +"&rank=high" +
+        let urlString = baseUrlString + "apikey=" + apiKeys[currentKey] + "&outputMode=json&start=" + start + "&end=" + end +  "&maxResults=" + maxResults + "&q.enriched.url.enrichedTitle.keywords.keyword.text=" + escapedSearchText + "&return=" + returnTypes + "&dedup=1"
         
         print(urlString)
         

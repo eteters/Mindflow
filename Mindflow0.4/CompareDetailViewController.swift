@@ -48,10 +48,10 @@ class CompareDetailViewController: UIViewController, UITableViewDelegate, UITabl
         return headers.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let term1 = combinedEntity?.entity1{
+        if let term1 = combinedEntity?.entity1, headers[section] == search1{
             return term1.articles.count
         }
-        if let term2 = combinedEntity?.entity2 {
+        if let term2 = combinedEntity?.entity2, headers[section] == search2 {
             return term2.articles.count
         }// TODO: check add a boolean!!!! needs to know what section
         else {return 0}
@@ -63,20 +63,28 @@ class CompareDetailViewController: UIViewController, UITableViewDelegate, UITabl
             return cell
         }
         
-        if let term1 = combinedEntity?.entity1  {
+        if let term1 = combinedEntity?.entity1, indexPath.section == 0  {
             cell.articleTitleLabel.text = term1.articles[indexPath.row].title
             cell.pubDateLabel.text = term1.articles[indexPath.row].title
             cell.articleInfo3Label.text = term1.articles[indexPath.row].author
-            let relevance = term1.articles[indexPath.row].entityRelevance
-            cell.articleInfo4Label.text = "Relevance: \(relevance?.percentage()) "
+            if let relevance = term1.articles[indexPath.row].entityRelevance{
+            
+            cell.articleInfo4Label.text = "Relevance: \(String(relevance.percentage())) "
+            }
+            cell.twoDetailViewController = self
+            cell.url = URL(string:term1.articles[indexPath.row].url)
+            
         }
     
-        if let term2 = combinedEntity?.entity2  {
+        if let term2 = combinedEntity?.entity2, indexPath.section == 1  {
             cell.articleTitleLabel.text = term2.articles[indexPath.row].title
             cell.pubDateLabel.text = term2.articles[indexPath.row].title
             cell.articleInfo3Label.text = term2.articles[indexPath.row].author
-            let relevance = term2.articles[indexPath.row].entityRelevance
-            cell.articleInfo4Label.text = "Relevance: \(relevance?.percentage()) "
+            if let relevance = term2.articles[indexPath.row].entityRelevance{
+                cell.articleInfo4Label.text = "Relevance: \(String(relevance.percentage())) "
+            }
+            cell.twoDetailViewController = self
+            cell.url = URL(string:term2.articles[indexPath.row].url)
         }
         
         return cell
