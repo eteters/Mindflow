@@ -20,7 +20,7 @@ struct Entity {
     var articles = [Article]() // Do we only pick out a unique entity once and store all doc info in here?
     //Or do we make a new entity for each article just to keep everything straight?
     //Will this make querying harder?
-    //
+    //var articleCount:Int
     
     
     init(count:Int, relevance:Double, sentimentType:String, sentimentScore:Double, entityName:String, entityType:String, article:Article) {
@@ -31,6 +31,7 @@ struct Entity {
         self.entityName = entityName
         self.entityType = entityType
         self.articles.append(article)
+        //self.articleCount = articleCount
     }
 }
 
