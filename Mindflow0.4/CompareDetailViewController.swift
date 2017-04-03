@@ -26,10 +26,10 @@ class CompareDetailViewController: UIViewController, UITableViewDelegate, UITabl
         self.title = combinedEntity?.entityName
         
         if let _ = combinedEntity?.entity1{
-            headers.append(search2)
+            headers.append(search1)
         }
         if let _ = combinedEntity?.entity2{
-            headers.append(search1)
+            headers.append(search2)
         }
         
         tableView.reloadData()
@@ -48,10 +48,10 @@ class CompareDetailViewController: UIViewController, UITableViewDelegate, UITabl
         return headers.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let term1 = combinedEntity?.entity1, headers[section] == search2{
+        if let term1 = combinedEntity?.entity1, headers[section] == search1{
             return term1.articles.count
         }
-        if let term2 = combinedEntity?.entity2, headers[section] == search1 {
+        if let term2 = combinedEntity?.entity2, headers[section] == search2 {
             return term2.articles.count
         }// TODO: check add a boolean!!!! needs to know what section
         else {return 0}
@@ -63,7 +63,7 @@ class CompareDetailViewController: UIViewController, UITableViewDelegate, UITabl
             return cell
         }
         
-        if let term1 = combinedEntity?.entity1, indexPath.section == 0  {
+        if let term1 = combinedEntity?.entity1, headers[indexPath.section] == search1  {
             cell.articleTitleLabel.text = term1.articles[indexPath.row].title
             cell.pubDateLabel.text = term1.articles[indexPath.row].title
             cell.articleInfo3Label.text = term1.articles[indexPath.row].author
@@ -76,7 +76,7 @@ class CompareDetailViewController: UIViewController, UITableViewDelegate, UITabl
             
         }
     
-        if let term2 = combinedEntity?.entity2, indexPath.section == 1  {
+        if let term2 = combinedEntity?.entity2, headers[indexPath.section] == search2  {
             cell.articleTitleLabel.text = term2.articles[indexPath.row].title
             cell.pubDateLabel.text = term2.articles[indexPath.row].title
             cell.articleInfo3Label.text = term2.articles[indexPath.row].author
@@ -86,12 +86,27 @@ class CompareDetailViewController: UIViewController, UITableViewDelegate, UITabl
             cell.twoDetailViewController = self
             cell.url = URL(string:term2.articles[indexPath.row].url)
         }
+        cell.twoDetailViewController = self
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return headers[section]
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination  = segue.destination as? WebViewController {
+            var url:URL?
+            if let _ = combinedEntity?.entity1, headers[(tableView.indexPathForSelectedRow?.section)!] == search1{
+                url = URL(string: (combinedEntity?.entity1?.articles[(tableView.indexPathForSelectedRow?.row)!].url)!)
+            }
+            if let _ = combinedEntity?.entity2, headers[(tableView.indexPathForSelectedRow?.section)!] == search2{
+                 url = URL(string: (combinedEntity?.entity2?.articles[(tableView.indexPathForSelectedRow?.row)!].url)!)
+            }
+            let request = URLRequest(url: url!)
+            destination.request = request
+            
+        }
     }
     
     

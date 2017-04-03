@@ -65,7 +65,7 @@ class OptionsTableViewController: UITableViewController {
             performSegue(withIdentifier: "historysegue", sender: self)
             break
         case 3:
-            shouldPerformSegue(withIdentifier: "gohome", sender: self)
+            performSegue(withIdentifier: "gohome", sender: self)
             break
         default:
             return //never happens

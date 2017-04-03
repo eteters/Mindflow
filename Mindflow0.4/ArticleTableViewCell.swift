@@ -34,8 +34,8 @@ class ArticleTableViewCell: UITableViewCell {
             detailViewController.present(activityViewController, animated: true, completion: {})
 
         }
-        else if let compareControler = twoDetailViewController {
-            compareControler.present(activityViewController, animated: true, completion: {})
+        else if let compareController = twoDetailViewController {
+            compareController.present(activityViewController, animated: true, completion: {})
         }
         
     }

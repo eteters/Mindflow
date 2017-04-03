@@ -179,8 +179,8 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
         if let destination = segue.destination as? CompareDetailViewController {
             destination.combinedEntity = combinedArray[(tableView.indexPathForSelectedRow?.row)!]
             //I'm not currently sure why these are switched...
-            destination.search1 = termTwo
-            destination.search2 = termOne
+            destination.search1 = termOne
+            destination.search2 = termTwo
         }
         if let destination = segue.destination as? OptionsTableViewController {
             destination.historyDelegate = self.historyDelegate
