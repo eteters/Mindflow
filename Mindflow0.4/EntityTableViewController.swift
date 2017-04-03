@@ -17,6 +17,9 @@ protocol sortTableViewDelegate: class {
 
 class EntityTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, sortTableViewDelegate {
     
+    @IBAction func relInfo(_ sender: Any) {
+        
+    }
     //needs internal?
     //MARk: Mark: does sorting
     func sortWasSelected(_ data: Int) {

@@ -178,6 +178,7 @@ class StationaryExpandingAboveTextViewController:  UIViewController, UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? CompareDetailViewController {
             destination.combinedEntity = combinedArray[(tableView.indexPathForSelectedRow?.row)!]
+            //I'm not currently sure why these are switched...
             destination.search1 = termTwo
             destination.search2 = termOne
         }

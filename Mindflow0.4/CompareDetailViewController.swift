@@ -12,7 +12,7 @@ class CompareDetailViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    //I Need to pass the two search terms! They are heders, not the entity names
+    //I Need to pass the two search terms! They are headers, not the entity names
     var search1 = ""
     var search2 = ""
     
@@ -48,10 +48,10 @@ class CompareDetailViewController: UIViewController, UITableViewDelegate, UITabl
         return headers.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let term1 = combinedEntity?.entity1, headers[section] == search1{
+        if let term1 = combinedEntity?.entity1, headers[section] == search2{
             return term1.articles.count
         }
-        if let term2 = combinedEntity?.entity2, headers[section] == search2 {
+        if let term2 = combinedEntity?.entity2, headers[section] == search1 {
             return term2.articles.count
         }// TODO: check add a boolean!!!! needs to know what section
         else {return 0}
