@@ -69,6 +69,11 @@ class HistoryTableViewController: UITableViewController {
         }
         else{
             cell.termLabel.text = hist[indexPath.row].term1
+            if let ents = hist[indexPath.row].entities {
+                cell.numResultLabel.text = "\(ents.count)"
+
+            }
+            
         }
         
         return cell
@@ -88,6 +93,9 @@ class HistoryTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? EntityTableViewController{
             destination.searchDone = true
+            if let term = history?[(historyTable.indexPathForSelectedRow?.row)!].term1{
+                destination.searchTerm = term
+            }
             destination.entities = history?[(historyTable.indexPathForSelectedRow?.row)!].entities
             
         }

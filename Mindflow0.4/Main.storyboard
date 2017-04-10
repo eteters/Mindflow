@@ -63,17 +63,17 @@
                                     <segue destination="fKB-Xp-53e" kind="show" id="HQA-aK-DNj"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Sdt-J7-bCS">
+                            <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Sdt-J7-bCS">
                                 <rect key="frame" x="163" y="290" width="51" height="31"/>
                                 <accessibility key="accessibilityConfiguration" hint="sadf"/>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYZ-4w-kNR">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYZ-4w-kNR">
                                 <rect key="frame" x="235" y="295" width="61" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pV3-Hv-7Yu">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pV3-Hv-7Yu">
                                 <rect key="frame" x="99" y="294" width="40" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -134,33 +134,33 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entity Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v78-jF-Q0L">
-                                            <rect key="frame" x="8" y="12" width="109" height="24"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Relevance Score" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Gf-Rq-xU8">
-                                            <rect key="frame" x="225.5" y="12" width="149.5" height="24"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Related" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v78-jF-Q0L">
+                                            <rect key="frame" x="20" y="12" width="68" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sal-mK-9Vf">
-                                            <rect key="frame" x="193.5" y="12" width="22" height="22"/>
+                                            <rect key="frame" x="333" y="12" width="22" height="22"/>
                                             <connections>
                                                 <action selector="relInfo:" destination="pJh-lk-Jxw" eventType="touchUpInside" id="jxk-82-QVu"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Relevance" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Gf-Rq-xU8">
+                                            <rect key="frame" x="230" y="12" width="93" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="v78-jF-Q0L" firstAttribute="top" secondItem="ddo-SV-IGO" secondAttribute="top" constant="12" id="Gex-UF-ypA"/>
-                                        <constraint firstItem="v78-jF-Q0L" firstAttribute="leading" secondItem="ddo-SV-IGO" secondAttribute="leading" constant="8" id="I06-53-91U"/>
+                                        <constraint firstItem="v78-jF-Q0L" firstAttribute="leading" secondItem="ddo-SV-IGO" secondAttribute="leading" constant="20" id="I06-53-91U"/>
                                         <constraint firstItem="3Gf-Rq-xU8" firstAttribute="top" secondItem="sal-mK-9Vf" secondAttribute="top" id="IYz-ge-gID"/>
                                         <constraint firstItem="sal-mK-9Vf" firstAttribute="top" secondItem="v78-jF-Q0L" secondAttribute="top" id="N2c-lN-Piv"/>
-                                        <constraint firstItem="3Gf-Rq-xU8" firstAttribute="leading" secondItem="sal-mK-9Vf" secondAttribute="trailing" constant="10" id="atB-Pi-Z0d"/>
-                                        <constraint firstAttribute="trailing" secondItem="3Gf-Rq-xU8" secondAttribute="trailing" id="xHX-Vw-19Z"/>
+                                        <constraint firstItem="sal-mK-9Vf" firstAttribute="leading" secondItem="3Gf-Rq-xU8" secondAttribute="trailing" constant="10" id="Y4G-s7-6rT"/>
+                                        <constraint firstAttribute="trailing" secondItem="sal-mK-9Vf" secondAttribute="trailing" constant="20" id="yyq-KN-hRT"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -448,7 +448,7 @@
                                     <segue destination="pJh-lk-Jxw" kind="show" id="Vam-EE-Yfj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EV6-vm-fJv">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EV6-vm-fJv">
                                 <rect key="frame" x="116" y="59" width="144" height="30"/>
                                 <state key="normal" title="Search and Compare"/>
                                 <connections>
@@ -553,6 +553,7 @@
                             <constraint firstItem="C3g-f7-UqV" firstAttribute="top" secondItem="UQP-h6-5Vd" secondAttribute="bottom" constant="8" id="6lZ-ac-LCk"/>
                             <constraint firstAttribute="leadingMargin" secondItem="UQP-h6-5Vd" secondAttribute="leading" id="Aay-Aa-hJD"/>
                             <constraint firstItem="EV6-vm-fJv" firstAttribute="top" secondItem="jlJ-6t-NZg" secondAttribute="bottom" constant="4" id="Jfr-72-5ou"/>
+                            <constraint firstItem="EV6-vm-fJv" firstAttribute="centerX" secondItem="jlJ-6t-NZg" secondAttribute="centerX" id="R0L-SY-Ekm"/>
                             <constraint firstAttribute="leadingMargin" secondItem="C3g-f7-UqV" secondAttribute="leading" constant="14" id="ZFQ-ai-jKG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="C3g-f7-UqV" secondAttribute="trailing" constant="-14" id="lgZ-rb-Q8m"/>
                             <constraint firstItem="jlJ-6t-NZg" firstAttribute="centerX" secondItem="6nc-Ja-pRx" secondAttribute="centerX" id="lgf-w2-vE0"/>
@@ -570,7 +571,7 @@
             </objects>
             <point key="canvasLocation" x="2621.5999999999999" y="135.38230884557723"/>
         </scene>
-        <!--Web View Controller-->
+        <!--Title-->
         <scene sceneID="jOr-PE-1Wp">
             <objects>
                 <viewController id="gRr-LB-IJN" customClass="WebViewController" customModule="Mindflow0_4" customModuleProvider="target" sceneMemberID="viewController">
@@ -595,6 +596,13 @@
                             <constraint firstItem="DvQ-zz-gJB" firstAttribute="leading" secondItem="7NM-52-6io" secondAttribute="leadingMargin" id="uSx-yb-sJ8"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="3Ry-4d-UuE">
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="w07-Op-NhP">
+                            <connections>
+                                <action selector="share:" destination="gRr-LB-IJN" id="cDl-Zo-Deb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="webView" destination="DvQ-zz-gJB" id="kt3-sf-2np"/>
                     </connections>
@@ -1022,10 +1030,10 @@
         <image name="Share" width="22" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KBP-u7-FI6"/>
         <segue reference="0Pn-8u-GLp"/>
         <segue reference="Vam-EE-Yfj"/>
-        <segue reference="lGG-rN-Jgd"/>
+        <segue reference="4iy-ve-f9u"/>
         <segue reference="2Qk-dV-HnU"/>
+        <segue reference="BeJ-qi-Oj1"/>
     </inferredMetricsTieBreakers>
 </document>

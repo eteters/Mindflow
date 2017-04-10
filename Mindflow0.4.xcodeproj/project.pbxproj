@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE038EBA1E99CF3A002D6B03 /* AylienNewsGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE038EB91E99CF3A002D6B03 /* AylienNewsGetter.swift */; };
 		AE1D5C781E8C9A7700C49549 /* ViewOptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1D5C771E8C9A7700C49549 /* ViewOptionsTableViewController.swift */; };
 		AE1D5C7A1E8D99DB00C49549 /* ViewOptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1D5C791E8D99DB00C49549 /* ViewOptionsTableViewCell.swift */; };
 		AE59C6E51E7226C2003CDE04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE59C6E41E7226C2003CDE04 /* AppDelegate.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AE038EB91E99CF3A002D6B03 /* AylienNewsGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AylienNewsGetter.swift; sourceTree = "<group>"; };
 		AE1D5C771E8C9A7700C49549 /* ViewOptionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewOptionsTableViewController.swift; sourceTree = "<group>"; };
 		AE1D5C791E8D99DB00C49549 /* ViewOptionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewOptionsTableViewCell.swift; sourceTree = "<group>"; };
 		AE59C6E11E7226C2003CDE04 /* Mindflow0.4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mindflow0.4.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +127,7 @@
 				AE59C6FF1E722B6A003CDE04 /* Article.swift */,
 				AE59C6FD1E722B54003CDE04 /* Entity.swift */,
 				AE59C7021E722BDC003CDE04 /* AlchemyNewsGetter.swift */,
+				AE038EB91E99CF3A002D6B03 /* AylienNewsGetter.swift */,
 				AEA55D1D1E7B591600C59376 /* CombinedEntity.swift */,
 				AE98CF211E8B464500C19198 /* History.swift */,
 			);
@@ -247,6 +250,7 @@
 				AEA55D261E7F75EB00C59376 /* OptionsTableViewController.swift in Sources */,
 				AE59C6FA1E7228C1003CDE04 /* SearchViewController.swift in Sources */,
 				AE59C7071E723A20003CDE04 /* HeaderView.swift in Sources */,
+				AE038EBA1E99CF3A002D6B03 /* AylienNewsGetter.swift in Sources */,
 				AEA55D221E7B687A00C59376 /* ComparisonTableViewCell.swift in Sources */,
 				AE98CF261E8B58FA00C19198 /* HistoryTableViewCell.swift in Sources */,
 				AE59C7031E722BDC003CDE04 /* AlchemyNewsGetter.swift in Sources */,

@@ -36,6 +36,16 @@ struct Entity {
         self.articles.append(article)
         //self.articleCount = articleCount
     }
+    
+    init(AylienScore count:Int, relevance:Double, entityName:String, entityTypes:[String], article:Article) {
+        
+        
+        
+    }
+    
+    init(AylienNoScore count:Int, entityName:String, entityTypes:[String], article:Article) {
+        <#statements#>
+    }
 }
 
 

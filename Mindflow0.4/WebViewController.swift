@@ -22,10 +22,21 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     var request:URLRequest?
     
+    @IBAction func share(_ sender: Any) {
+        
+        if let url = request?.url{
+            let activityViewController = UIActivityViewController(activityItems: [url as NSURL], applicationActivities: nil)
+            self.present(activityViewController, animated: true, completion: {})
+
+        }
+        
+
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        title = ""
         if let request = request {
             webView.loadRequest(request)
             javascript = "document.body.innerHTML.replace(/the/g,\"<span id='myhighlight'>fox</span>\");"

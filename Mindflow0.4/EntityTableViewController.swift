@@ -271,7 +271,7 @@ class EntityTableViewController: UIViewController, UITableViewDataSource, UITabl
                 self.entities = entities
                 self.articles = articles
                 self.entities = entities?.sorted(by: { (ent1, ent2) -> Bool in
-                    return !ent1.count.isLess(than: ent2.count)// == ComparisonResult.orderedAscending
+                    return !ent1.relevance.isLess(than: ent2.relevance)// == ComparisonResult.orderedAscending
                     
                 })
                 self.historyDelegate?.historyPass.append(History(term: self.searchTerm, ents: self.entities))

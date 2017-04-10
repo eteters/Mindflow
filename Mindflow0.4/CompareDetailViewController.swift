@@ -86,6 +86,7 @@ class CompareDetailViewController: UIViewController, UITableViewDelegate, UITabl
             cell.twoDetailViewController = self
             cell.url = URL(string:term2.articles[indexPath.row].url)
         }
+        cell.articleInfo5Label.text = ""
         cell.twoDetailViewController = self
         
         return cell

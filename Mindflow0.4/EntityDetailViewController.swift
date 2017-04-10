@@ -56,7 +56,7 @@ class EntityDetailViewController: UIViewController, UITableViewDelegate, UITable
         cell.articleTitleLabel.text = entity.articles[indexPath.row].title
         cell.articleInfo3Label.text = entity.articles[indexPath.row].author
         if let relevance = entity.articles[indexPath.row].entityRelevance {
-            cell.articleInfo4Label.text = "Relevance to Article: " + String(relevance)
+            cell.articleInfo4Label.text = "Relevance to Article: " + String(relevance.percentage()) + "%"
         }
         cell.articleInfo5Label.text = ""
         
