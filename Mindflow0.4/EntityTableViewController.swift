@@ -106,6 +106,8 @@ class EntityTableViewController: UIViewController, UITableViewDataSource, UITabl
     
     var days = ""
     
+    var aylien = true
+    
     let posColor = 0xB1F2F0
     let negColor = 0xCFF69D
     
@@ -122,27 +124,50 @@ class EntityTableViewController: UIViewController, UITableViewDataSource, UITabl
         self.title = searchTerm
         
         if (!searchDone){
-            AlchemyNewsGetter.start = days
-            AlchemyNewsGetter.search(searchText: searchTerm, userInfo: nil, dispatchQueueForHandler: DispatchQueue.main, completionHandler: { (userInfo, entities, articles, errorString) in
-                if errorString != nil {
-                    print(errorString!)
-                    self.entities = nil
-                    self.articles = nil
-                    if errorString == "server did not return OK" {
-                     self.retrySearch()
+            if (aylien) {
+                AylienNewsGetter.search(searchText: searchTerm, dispatchQueueForHandler: DispatchQueue.main, completionHandler: { (entities, articles, errorString) in
+                    if errorString != nil {
+                        print(errorString)
+                        self.entities = nil
+                        self.articles = nil
                     }
-                }
-                else {
-                    self.entities = entities
-                    self.articles = articles
-                    self.entities = entities?.sorted(by: { (ent1, ent2) -> Bool in
-                        return !ent1.count.isLess(than: ent2.count)// == ComparisonResult.orderedAscending
-                        
-                    })
-                    self.historyDelegate?.historyPass.append(History(term: self.searchTerm, ents: self.entities))
-                    self.entityTable.reloadData()
-                }
-            })
+                    else {
+                        self.entities = entities
+                        self.articles = articles
+                        self.entities = entities?.sorted(by: { (ent1, ent2) -> Bool in
+                            return !ent1.relevance.isLess(than: ent2.relevance)// == ComparisonResult.orderedAscending
+                            
+                        })
+                        self.historyDelegate?.historyPass.append(History(term: self.searchTerm, ents: self.entities))
+                        self.entityTable.reloadData()
+
+                    }
+                })
+            }
+            else{
+                AlchemyNewsGetter.start = days
+                AlchemyNewsGetter.search(searchText: searchTerm, userInfo: nil, dispatchQueueForHandler: DispatchQueue.main, completionHandler: { (userInfo, entities, articles, errorString) in
+                    if errorString != nil {
+                        print(errorString!)
+                        self.entities = nil
+                        self.articles = nil
+                        if errorString == "server did not return OK" {
+                            self.retrySearch()
+                        }
+                    }
+                    else {
+                        self.entities = entities
+                        self.articles = articles
+                        self.entities = entities?.sorted(by: { (ent1, ent2) -> Bool in
+                            return !ent1.relevance.isLess(than: ent2.relevance)// == ComparisonResult.orderedAscending
+                            
+                        })
+                        self.historyDelegate?.historyPass.append(History(term: self.searchTerm, ents: self.entities))
+                        self.entityTable.reloadData()
+                    }
+                })
+            }
+            
             searchDone = true
         }
         

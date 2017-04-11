@@ -79,12 +79,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yBk-ez-9Wi">
+                                <rect key="frame" x="163" y="349" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aylien" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6h-XX-5nO">
+                                <rect key="frame" x="244" y="354" width="46" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alchemy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySq-8f-pwH">
+                                <rect key="frame" x="75" y="353" width="67" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PYZ-4w-kNR" firstAttribute="leading" secondItem="Sdt-J7-bCS" secondAttribute="trailing" constant="23" id="0pg-r0-e9g"/>
                             <constraint firstItem="Qra-sT-eCh" firstAttribute="leading" secondItem="Ma1-am-y82" secondAttribute="leadingMargin" constant="119" id="2yh-4K-Ou9"/>
+                            <constraint firstItem="ySq-8f-pwH" firstAttribute="top" secondItem="pV3-Hv-7Yu" secondAttribute="bottom" constant="38" id="3z2-Tb-LFD"/>
+                            <constraint firstItem="yBk-ez-9Wi" firstAttribute="top" secondItem="Sdt-J7-bCS" secondAttribute="bottom" constant="28" id="5X5-wl-4t5"/>
                             <constraint firstItem="qps-sT-k2k" firstAttribute="top" secondItem="m87-ui-pSD" secondAttribute="bottom" constant="28" id="9IJ-0G-JmQ"/>
+                            <constraint firstItem="P6h-XX-5nO" firstAttribute="top" secondItem="PYZ-4w-kNR" secondAttribute="bottom" constant="38" id="A11-GN-7qc"/>
                             <constraint firstItem="Sdt-J7-bCS" firstAttribute="leading" secondItem="pV3-Hv-7Yu" secondAttribute="trailing" constant="24" id="HwG-lF-66b"/>
                             <constraint firstItem="ge0-v1-6zs" firstAttribute="top" secondItem="iWr-Ih-gg6" secondAttribute="bottom" constant="60" id="RdZ-M8-c0J"/>
                             <constraint firstItem="Sdt-J7-bCS" firstAttribute="top" secondItem="Qra-sT-eCh" secondAttribute="bottom" constant="18" id="XXF-sM-Gvq"/>
@@ -96,7 +114,10 @@
                             <constraint firstItem="qps-sT-k2k" firstAttribute="leading" secondItem="m87-ui-pSD" secondAttribute="leading" id="h0I-zi-M6x"/>
                             <constraint firstItem="m87-ui-pSD" firstAttribute="top" secondItem="ge0-v1-6zs" secondAttribute="bottom" constant="8" symbolic="YES" id="icn-Ad-tgu"/>
                             <constraint firstItem="m87-ui-pSD" firstAttribute="centerX" secondItem="Ma1-am-y82" secondAttribute="centerX" id="jdF-n8-YRr"/>
+                            <constraint firstItem="yBk-ez-9Wi" firstAttribute="centerX" secondItem="Ma1-am-y82" secondAttribute="centerX" id="k24-Q5-l6z"/>
                             <constraint firstItem="ge0-v1-6zs" firstAttribute="centerX" secondItem="Ma1-am-y82" secondAttribute="centerX" id="krH-ry-brU"/>
+                            <constraint firstItem="P6h-XX-5nO" firstAttribute="leading" secondItem="yBk-ez-9Wi" secondAttribute="trailing" constant="32" id="lDH-Rv-Rnz"/>
+                            <constraint firstItem="yBk-ez-9Wi" firstAttribute="leading" secondItem="ySq-8f-pwH" secondAttribute="trailing" constant="21" id="mhG-jn-xL1"/>
                             <constraint firstItem="ge0-v1-6zs" firstAttribute="centerX" secondItem="m87-ui-pSD" secondAttribute="centerX" id="pK1-6A-FAM"/>
                             <constraint firstItem="Qra-sT-eCh" firstAttribute="top" secondItem="Kcr-74-mtR" secondAttribute="bottom" constant="8" id="uWn-Ca-zu1"/>
                         </constraints>
@@ -108,6 +129,7 @@
                         <outlet property="dateSwitch" destination="Sdt-J7-bCS" id="gUP-dQ-1hY"/>
                         <outlet property="searchButton" destination="m87-ui-pSD" id="Z3V-BH-p4r"/>
                         <outlet property="searchField" destination="ge0-v1-6zs" id="jZT-54-vay"/>
+                        <outlet property="searchSwitch" destination="yBk-ez-9Wi" id="Mr8-Ce-wpd"/>
                         <outlet property="unHideButton" destination="qps-sT-k2k" id="b7c-sZ-2ft"/>
                     </connections>
                 </viewController>

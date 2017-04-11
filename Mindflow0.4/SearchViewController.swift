@@ -16,6 +16,7 @@ class SearchViewController: UIViewController {
     var compareTerm = ""
     var historyPass:[History] = []
 
+    @IBOutlet weak var searchSwitch: UISwitch!
     @IBOutlet weak var dateSwitch: UISwitch!
     @IBOutlet weak var compareSearchField: UITextField!
     @IBOutlet weak var searchField: UITextField!
@@ -54,6 +55,9 @@ class SearchViewController: UIViewController {
             }
             else {
                 destination.days = "now-1d"
+            }
+            if searchSwitch.isOn {
+                destination.aylien  = true
             }
         }
         else if let destination = segue.destination as? StationaryExpandingAboveTextViewController {

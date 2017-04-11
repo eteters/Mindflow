@@ -146,7 +146,7 @@ class AlchemyNewsGetter { //reference type I think
                                         let sentimentNode = ent["sentiment"] as? [String:Any],
                                         let sentimentType = sentimentNode["type"] as? String,
                                         let sentimentScore = sentimentNode["score"] as? Double{
-                                        let tempEntity = Entity(count: count, relevance: relevance, sentimentType: sentimentType, sentimentScore: sentimentScore, entityName: entName, entityType: entType, article: tempArticle)
+                                        let tempEntity = Entity(AlchemyWithCount: count, relevance: relevance, sentimentType: sentimentType, sentimentScore: sentimentScore, entityName: entName, entityType: entType, article: tempArticle)
                                         
                                         
                                         if entityArray.contains(where: { $0.entityName.lowercased() == tempEntity.entityName.lowercased() }) {

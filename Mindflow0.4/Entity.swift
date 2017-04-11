@@ -16,7 +16,7 @@ struct Entity {
     var sentimentType:String
     var sentimentScore: Double
     var entityName:String
-    var entityType:String
+    var entityTypes:[String]
     var articles = [Article]()
     var isHighlighted = false //Could also be an enum with state NONE HIDDEN HIGLIGHT
     var myHidden = false //Need this, actually/
@@ -26,25 +26,41 @@ struct Entity {
     //var articleCount:Int
     
     
-    init(count:Int, relevance:Double, sentimentType:String, sentimentScore:Double, entityName:String, entityType:String, article:Article) {
+    init(AlchemyWithCount count:Int, relevance:Double, sentimentType:String, sentimentScore:Double, entityName:String, entityType:String, article:Article) {
         self.count = count
         self.relevance = relevance
         self.sentimentType = sentimentType
         self.sentimentScore = sentimentScore
         self.entityName = entityName
-        self.entityType = entityType
+        self.entityTypes = []
+        self.entityTypes.append(entityType)
         self.articles.append(article)
         //self.articleCount = articleCount
     }
     
-    init(AylienScore count:Int, relevance:Double, entityName:String, entityTypes:[String], article:Article) {
+    init(AylienScoreWithCount count:Int, relevance:Double, entityName:String, entityTypes:[String], article:Article) {
+        self.count = count
+        self.relevance = relevance
+        self.entityName = entityName
+        self.entityTypes = entityTypes
+        self.articles.append(article)
         
+        self.sentimentType = "aylien"
+        self.sentimentScore = 0
         
         
     }
     
-    init(AylienNoScore count:Int, entityName:String, entityTypes:[String], article:Article) {
-        <#statements#>
+    init(AylienNoScoreWithCount count:Int, entityName:String, entityTypes:[String], article:Article) {
+        self.count = count
+        self.entityName = entityName
+        self.entityTypes = entityTypes
+        self.articles.append(article)
+        
+        self.relevance = 0.5
+        self.sentimentType = "aylien"
+        self.sentimentScore = 0
+
     }
 }
 

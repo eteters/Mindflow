@@ -24,7 +24,7 @@ class AylienNewsGetter {
     
     static var language = "en"
     
-    static var pubStart = "NOW-1DAY&"
+    static var pubStart = "NOW-1DAY"
     
     static var pubEnd = "NOW"
     
@@ -44,16 +44,18 @@ class AylienNewsGetter {
     
     class func search(searchText: String, dispatchQueueForHandler: DispatchQueue, completionHandler: @escaping ([Entity]?, [Article]?, String?) -> Void) {
         
-        let urlString = "https://api.newsapi.aylien.com/api/v1/stories?text=" + searchText +  "&language%5B%5D=" + language + "&published_at.start=" + pubStart + "&published_at.end=" + "&categories.confident=true&cluster=" + clusterEnabled + "&cluster.algorithm=" + clusterAlg + "&sort_by=" + sortBy + "&sort_direction=" + sortDir + "&cursor=*&per_page=" + perPage
-
-        
-        guard let escapedUrl = urlString.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet) else {
+        guard let escapedSearchText = searchText.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet) else {
             dispatchQueueForHandler.async(execute: {
                 completionHandler(nil, nil, "problem preparing search text")
             })
             return
 
         }
+        
+        
+        let urlString = "https://api.newsapi.aylien.com/api/v1/stories?text=" + escapedSearchText +  "&language%5B%5D=" + language + "&published_at.start=" + pubStart + "&published_at.end=" + pubEnd + "&categories.confident=true&cluster=" + clusterEnabled + "&cluster.algorithm=" + clusterAlg + "&sort_by=" + sortBy + "&sort_direction=" + sortDir + "&cursor=*&per_page=" + perPage
+        
+        print(urlString)
         
         
     //Define and send URL request? 
@@ -65,15 +67,15 @@ class AylienNewsGetter {
         let appKeyData = appKey.data(using: String.Encoding.utf8)!
         
         
-        config.httpAdditionalHeaders = ["X-AYLIEN-NewsAPI-Application-ID" : "\(appIdData)", "X-AYLIEN-NewsAPI-Application-Key": "\(appKeyData)"]
+        config.httpAdditionalHeaders = ["X-AYLIEN-NewsAPI-Application-ID" : "\(appId)", "X-AYLIEN-NewsAPI-Application-Key": "\(appKey)", "Accept" : "application/json"]
         
         
         let session = URLSession(configuration: config) // Load configuration into Session
         
-        if let url = URL(string: escapedUrl) {
+        if let url = URL(string: urlString) {
             
             var urlRequest = URLRequest(url: url)
-            urlRequest.httpMethod = "POST"
+            urlRequest.httpMethod = "GET"
             urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
 //            var params: Dictionary<String, String> = Dictionary<String, String>()
@@ -108,10 +110,9 @@ class AylienNewsGetter {
                 }
                 
             })
-            
-
+            task.resume()  
         }
-        //task.resume()
+        
 
     }
     
@@ -143,32 +144,64 @@ class AylienNewsGetter {
                         let links = story["links"] as? [String:Any],
                         let articleUrl = links["permalink"] as? String{
                             var tempArticle = Article(title: articleTitle, url: articleUrl, author: articleSourceName, pubDate: publicationDate)
+                            articleArray.append(tempArticle)
                             //TODO: Todo. Add body to articles data. Add source to article data. Maybe add image url to article data. Change the way article author works, or its name
                             
                             for entity in titleEntities {
                                 if let entity = entity as? [String:Any],
                                     let entityName = entity["text"] as? String,
-                                let indices = entity["indices"] as? [Any]{
+                                    let indices = entity["indices"] as? [Any],
+                                    let types = entity["types"] as? [String]{
+                                        var tempEntity:Entity
+                                        let count = indices.count
+                                        if let entityScore = entity["score"] as? Double {
+                                            tempEntity = Entity(AylienScoreWithCount: count, relevance: entityScore, entityName: entityName, entityTypes: types, article: tempArticle)
+                                        }
+                                        else {
+                                            tempEntity = Entity(AylienNoScoreWithCount: count, entityName: entityName, entityTypes: types, article: tempArticle)
+                                        }
+                                        entityArray.append(tempEntity)
+                                }
+                            }
+                            for entity in bodyEntities {
+                                
+                                if let entity = entity as? [String:Any],
+                                    let entityName = entity["text"] as? String,
+                                    let indices = entity["indices"] as? [Any],
+                                    let types = entity["types"] as? [String]{
                                     var tempEntity:Entity
                                     let count = indices.count
                                     if let entityScore = entity["score"] as? Double {
-                                        tempEntity = Entity(count: count, relevance: entityScore, sentimentType: "aylien", sentimentScore: 0, entityName: entityName, entityTypes: <#T##String#>, article: <#T##Article#>)
+                                        tempEntity = Entity(AylienScoreWithCount: count, relevance: entityScore, entityName: entityName, entityTypes: types, article: tempArticle)
                                     }
                                     else {
-                                        tempEntity = Entity(count: <#T##Int#>, relevance: <#T##Double#>, sentimentType: <#T##String#>, sentimentScore: <#T##Double#>, entityName: <#T##String#>, entityType: <#T##String#>, article: <#T##Article#>)
+                                        tempEntity = Entity(AylienNoScoreWithCount: count, entityName: entityName, entityTypes: types, article: tempArticle)
                                     }
-                                    
-                                    
+                                    entityArray.append(tempEntity)
                                 }
+                                
                             }
+                        }
+                    }
+                }
+                else if let errors = responseDictionary["errors"] as? [Any]{
+                    for error in errors {
+                        if let error = error as? [String:Any],
+                            let title = error["title"] as? String,
+                            let desc = error["detail"] as? String,
+                            let id = error["id"] as? String,
+                            let status = error["status"] as? String,
+                            let code = error["code"] as? String{
                             
-                            
+                            print("Title of Error: \(title), with id \(id) status \(status) and code \(code)")
+                                
+                            print("Description: " + desc)
                         }
                     }
                 }
             }
         }
-
+        return (entityArray, articleArray, nil)
     }
     
 }
