@@ -68,24 +68,45 @@ class SearchViewController: UIViewController {
                 return
             }
             compareTerm = text2
-            AlchemyNewsGetter.search(searchText: text, userInfo: nil, dispatchQueueForHandler: DispatchQueue.main, completionHandler: { (userInfo, entities, articles, errorString) in
-                if errorString != nil {
-                    print(errorString!)
-                    if errorString == "server did not return OK" {
-                        self.retrySearch()
+            if (searchSwitch.isOn) {
+                AylienNewsGetter.search(searchText: text, dispatchQueueForHandler: DispatchQueue.main, completionHandler: { (entities, articles, errorString) in
+                    if errorString != nil {
+                        print(errorString)
+                        self.entities = nil
+                        self.articles = nil
                     }
-                    destination.entities1 = nil
-                }
-                else {
-                    destination.historyDelegate = self
-                    //destination.entities1 = entities
-                    destination.termOne = text
-                    destination.termTwo = text2
-                    destination.entities1 = entities
-                    //destination.tableView.reloadData()
-                    
-                }
-            })
+                    else {
+                        self.entities = entities
+                        self.articles = articles
+                        self.entities = entities?.sorted(by: { (ent1, ent2) -> Bool in
+                            return !ent1.relevance.isLess(than: ent2.relevance)// == ComparisonResult.orderedAscending
+                            
+                        })
+                        self.historyPass.append(History(term: text, ents: self.entities))
+                        
+                        
+                    }
+                })
+            }
+            else {
+                AlchemyNewsGetter.search(searchText: text, userInfo: nil, dispatchQueueForHandler: DispatchQueue.main, completionHandler: { (userInfo, entities, articles, errorString) in
+                    if errorString != nil {
+                        print(errorString!)
+                        if errorString == "server did not return OK" {
+                            self.retrySearch()
+                        }
+                        destination.entities1 = nil
+                    }
+                    else {
+                        destination.historyDelegate = self
+                        //destination.entities1 = entities
+                        destination.termOne = text
+                        destination.termTwo = text2
+                        destination.entities1 = entities
+                        //destination.tableView.reloadData()
+                    }
+                })
+            }
 
         }
         

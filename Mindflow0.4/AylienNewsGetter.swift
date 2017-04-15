@@ -30,14 +30,17 @@ class AylienNewsGetter {
     
 //    static var categoriesConfident = true is default
     
+    //Possibly worth looking into?
     static var clusterEnabled = "false"
     
     static var clusterAlg = "lingo"
     
+    //This field shouldn't matter because we sort it later (also later we'll be using our own score)
     static var sortBy = "hotness" //relevance -- story relevance I suppose, recency, published_at (default), social_shares_count, media, source links, lots of alexa ranks
     
     static var sortDir = "desc" //or asc
     
+    //This definitely work which is cool
     static var perPage = "2"
     
     
@@ -160,7 +163,19 @@ class AylienNewsGetter {
                                         else {
                                             tempEntity = Entity(AylienNoScoreWithCount: count, entityName: entityName, entityTypes: types, article: tempArticle)
                                         }
-                                        entityArray.append(tempEntity)
+                                    
+                                    //Looks to see if there are repeats, adds them if so. 
+                                    if entityArray.contains(where: { $0.entityName.lowercased() == tempEntity.entityName.lowercased() }) {
+                                        if let ind = entityArray.index(where: {$0.entityName == tempEntity.entityName}) {
+                                            entityArray[ind].count += tempEntity.count
+                                            entityArray[ind].articles.append(contentsOf: tempEntity.articles)
+                                            entityArray[ind].relevance = (tempEntity.relevance + entityArray[ind].relevance * (Double(entityArray[ind].articles.count - 1)) ) / Double(entityArray[ind].articles.count)
+                                            //entityArray[ind].sentimentScore = (tempEntity.sentimentScore + entityArray[ind].sentimentScore)/2
+                                        }
+                                        
+                                    }
+                                    else { entityArray.append(tempEntity) }
+                                    
                                 }
                             }
                             for entity in bodyEntities {
